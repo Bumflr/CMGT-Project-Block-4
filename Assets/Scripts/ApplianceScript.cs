@@ -8,29 +8,22 @@ public enum ApplianceState
 {
     ON,
     OFF,
-    UNPLUGGED
+    NO_POWER
 }
 
 public class ApplianceScript : MonoBehaviour
 {
     private ResourceManager ResourceManager;
+    [HideInInspector] public ApplianceManager symbolCanvas;
+    public int index;
 
-    [SerializeField]
-    private float kwH;
-
-    private Material offMat;
-    private Material onMat;
-    private Material unplugMat;
-    
+    public float kwH;
 
     //wind objects
     public GameObject Object1;
     public GameObject Object2;
     public GameObject Object3;
 
-    //public GameObject canvas;
-
-    public bool isHydrogenAppliance;
     public bool isManualAppliance;
     public bool isEngineOrMotors;
 
@@ -41,36 +34,26 @@ public class ApplianceScript : MonoBehaviour
     private bool timer;
     private bool otherTimer;
 
+    public Rigidbody rb;
 
-    private void Awake()
+    public void Begin()
     {
-        //Resources is a folder where you can put stuff and get stuff
-        //Dont use it too much however, since it isn't that performant
-        offMat = Resources.Load<Material>("OffMat");
-        onMat = Resources.Load<Material>("OnMat");
-        unplugMat = Resources.Load<Material>("UnpluggedMat");
-
         ResourceManager = FindObjectOfType<ResourceManager>();
-        state = ApplianceState.UNPLUGGED;
-        SetMat();
 
+        state = ApplianceState.OFF;
+        SetSymbol();
         //Is like a just calling a function but a bit different
         StartCoroutine(SearchForInstance());
     }
-   
+  
     private void DeductElectricity(object sender, EventArgs e)
     {
         //kilo watt minute
         float kwM = kwH / 60;
-        //kilo watt minute if the things turned off
-        float kwMOff = kwM * 0.3f;
 
         if (state == ApplianceState.ON)
         {
             ResourceManager.electricity -= kwM;
-
-            if (isHydrogenAppliance)
-                ResourceManager.hydrogen += 5;
 
             //if it is an appliances that requires work to use, it fastforwards time
             if (isManualAppliance)
@@ -107,8 +90,6 @@ public class ApplianceScript : MonoBehaviour
 
         if (state == ApplianceState.OFF)
         {
-            ResourceManager.electricity -= kwMOff;
-
             if (isEngineOrMotors)
             {
                 TimeManager.Instance.motorsOff = true;
@@ -116,7 +97,7 @@ public class ApplianceScript : MonoBehaviour
             }
         }
 
-        if (state == ApplianceState.UNPLUGGED)
+        if (state == ApplianceState.NO_POWER)
         {
             if (isEngineOrMotors)
             {
@@ -134,40 +115,17 @@ public class ApplianceScript : MonoBehaviour
                 state = ApplianceState.ON;
                 break;
             case ApplianceState.ON:
-                state = ApplianceState.UNPLUGGED;
+                state = ApplianceState.OFF;
                 break;
-            case ApplianceState.UNPLUGGED:
+            case ApplianceState.NO_POWER:
                 state = ApplianceState.OFF;
                 break;
         }
-        SetMat();
+
+        SetSymbol();
     }
 
-    private void SetMat()
-    {
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-
-        if (renderer == null)
-            renderer = GetComponentInChildren<MeshRenderer>();
-
-        if (renderer == null)
-            throw new Exception();
-
-
-        //A switch case is basically just and else-if statement BUT it's more performant!
-        switch (state)
-        {
-            case ApplianceState.OFF:
-                renderer.material = offMat;
-                break;
-            case ApplianceState.ON:
-                renderer.material = onMat;
-                break;
-            case ApplianceState.UNPLUGGED:
-                renderer.material = unplugMat;
-                break;
-        }
-    }
+    private void SetSymbol() { symbolCanvas.SetSymbol(state, index); }
 
     IEnumerator Timer()
     {

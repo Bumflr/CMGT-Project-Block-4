@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    public string myFormat;
-
     public Text timerText;
     public Text counterDayText;
 
@@ -84,7 +82,7 @@ public class TimeManager : MonoBehaviour
         }
 
         counterDayText.text = ("Day: " + currentDay.ToString());
-        timerText.text = percentageDay.ToString();
+        timerText.text = percentageDay.ToString("F2") + "This is the percentage of how much time has passed, used later for filling in a clock :p";
     }
 
 
