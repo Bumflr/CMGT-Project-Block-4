@@ -31,6 +31,7 @@ public class ApplianceManager : MonoBehaviour
             applianceText[i].text = appliances[i].kwH.ToString() + " kwH";
             appliances[i].Begin();
         } 
+
     }
 
     ApplianceScript[] FindAppliances()
@@ -48,7 +49,6 @@ public class ApplianceManager : MonoBehaviour
         return scripts;
     }
 
-    // Update is called once per frame
     public void SetSymbol(ApplianceState state, int index)
     {
         switch (state)

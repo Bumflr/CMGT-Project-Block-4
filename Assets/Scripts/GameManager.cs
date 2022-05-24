@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     //The canvas the popup is n
     public RectTransform CanvasRect;
 
+    public FailScreen failScreen;
 
     public float maxTime;
 
@@ -31,6 +32,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (resourceManager.electricity <= 0)
+        {
+            failScreen.setup();
+        }
+
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 

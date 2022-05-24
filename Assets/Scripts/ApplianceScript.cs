@@ -20,9 +20,9 @@ public class ApplianceScript : MonoBehaviour
     public float kwH;
 
     //wind objects
-    public GameObject Object1;
+    /*public GameObject Object1;
     public GameObject Object2;
-    public GameObject Object3;
+    public GameObject Object3;*/
 
     public bool isManualAppliance;
     public bool isEngineOrMotors;
@@ -78,12 +78,12 @@ public class ApplianceScript : MonoBehaviour
 
             //wind particles code
 
-            if (!TimeManager.Instance.motorsOff && isEngineOrMotors)
+            /*if (!TimeManager.Instance.motorsOff && isEngineOrMotors)
             {
                 Object1.SetActive(true);
                 Object2.SetActive(true);
                 Object3.SetActive(true);
-            }
+            }*/
 
 
         }
@@ -93,7 +93,7 @@ public class ApplianceScript : MonoBehaviour
             if (isEngineOrMotors)
             {
                 TimeManager.Instance.motorsOff = true;
-                Object1.SetActive(false);
+                //Object1.SetActive(false);
             }
         }
 
@@ -102,7 +102,7 @@ public class ApplianceScript : MonoBehaviour
             if (isEngineOrMotors)
             {
                 TimeManager.Instance.motorsOff = true;
-                Object1.SetActive(false);
+                //Object1.SetActive(false);
             }
         }
     }
