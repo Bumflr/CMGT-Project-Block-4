@@ -1691,6 +1691,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1246878461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5647646640403038115, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
+  m_PrefabInstance: {fileID: 4801137797168510905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1246878467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246878461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697e6e5909c84f047971e5806e403e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
+  outlineScaleFactor: -1.1
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1257903681
 GameObject:
   m_ObjectHideFlags: 0
@@ -3225,6 +3245,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
+--- !u!1 &3327219186274151525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3327219185392015093, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
+  m_PrefabInstance: {fileID: 3327219186274151524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3327219186274151526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3327219186274151525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697e6e5909c84f047971e5806e403e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
+  outlineScaleFactor: -1.1
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &3886122121329358976
 Transform:
   m_ObjectHideFlags: 0
@@ -3256,7 +3296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4984262263454491929, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.78
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 4984262263454491929, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3294,6 +3334,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Washing Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 6152063061299109494, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152063061299109494, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
 --- !u!1001 &4837513762747173010

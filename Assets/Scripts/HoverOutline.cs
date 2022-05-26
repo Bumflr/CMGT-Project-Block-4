@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutlineScript : MonoBehaviour
+public class HoverOutline : MonoBehaviour
 {
     [SerializeField] private Material outlineMaterial;
     [SerializeField] private float outlineScaleFactor;
@@ -12,11 +12,12 @@ public class OutlineScript : MonoBehaviour
     void Start()
     {
         outlineRenderer = CreateOutline(outlineMaterial, outlineScaleFactor, outlineColor);
-        outlineRenderer.enabled = true;
     }
     Renderer CreateOutline(Material outlineMat, float scaleFactor, Color color)
     {
-        GameObject outlineObject = Instantiate(this.gameObject, transform.position, transform.rotation, transform);
+        GameObject outlineObject = Instantiate(this.gameObject, transform.localPosition, transform.localRotation, transform);
+        outlineObject.transform.localScale = new Vector3(1, 1, 1);
+
         Renderer rend = outlineObject.GetComponent<Renderer>();
 
         rend.material = outlineMat;
@@ -24,11 +25,19 @@ public class OutlineScript : MonoBehaviour
         rend.material.SetFloat("_Scale", scaleFactor);
         rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
-        outlineObject.GetComponent<OutlineScript>().enabled = false;
+        outlineObject.GetComponent<HoverOutline>().enabled = false;
         outlineObject.GetComponent<Collider>().enabled = false;
 
         rend.enabled = false;
 
         return rend;
+    }
+    private void OnMouseEnter()
+    {
+        outlineRenderer.enabled = true;
+    }
+    private void OnMouseExit()
+    {
+        outlineRenderer.enabled = false;
     }
 }

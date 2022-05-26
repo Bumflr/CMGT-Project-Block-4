@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
-        {
+        { 
 
             if (savedHit.transform != hit.transform)
             {
