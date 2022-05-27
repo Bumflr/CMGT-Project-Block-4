@@ -11,28 +11,39 @@ public enum ApplianceState
     NO_POWER
 }
 
+public enum Uses
+{
+    StoreFood,
+    CookFood,
+    FryFood,
+    WashHands,
+    WashDishes,
+    MoveShip,
+    Entertain,
+    DryClothes,
+    HeatWater,
+    WashClothes,
+    FixElectricity
+}
+
 public class ApplianceScript : MonoBehaviour
 {
     private ResourceManager ResourceManager;
-    [HideInInspector] public ApplianceManager symbolCanvas;
-    public int index;
-
+    [HideInInspector] public ApplianceManager applianceManager;
+    [HideInInspector] public int index;
     public float kwH;
-
+    public Uses use;
     //wind objects
     /*public GameObject Object1;
     public GameObject Object2;
     public GameObject Object3;*/
 
-    public bool isManualAppliance;
-    public bool isEngineOrMotors;
-
-    public float amountOfSecondsDoingTask;
+    /*public bool isManualAppliance;
+    public bool isEngineOrMotors;*/
+    public delegate void TaskEventHandler(Uses uses);
+    public event TaskEventHandler TaskCompleted;
 
     public ApplianceState state;
-
-    private bool timer;
-    private bool otherTimer;
 
     public Rigidbody rb;
 
@@ -45,65 +56,76 @@ public class ApplianceScript : MonoBehaviour
         //Is like a just calling a function but a bit different
         StartCoroutine(SearchForInstance());
     }
-  
+
+    //This currently does nothing
+    public void OnClick()
+    {
+        /*if (isManualAppliance)
+        {
+            if (timer == false && !otherTimer)
+            {
+                TimeManager.Instance.timeRate *= 6f;
+                //StartCoroutine(Timer());
+            }
+            else if (otherTimer)
+            {
+                TimeManager.Instance.timeRate /= 6f;
+                otherTimer = false;
+                RotateState();
+            }
+        }
+
+        if (isEngineOrMotors)
+        {
+            TimeManager.Instance.motorsOff = false;
+        }*/
+
+        //wind particles code
+
+        /*if (!TimeManager.Instance.motorsOff && isEngineOrMotors)
+{
+    Object1.SetActive(true);
+    Object2.SetActive(true);
+    Object3.SetActive(true);
+}*/
+        /*if (state == ApplianceState.OFF)
+        {
+            if (isEngineOrMotors)
+            {
+                TimeManager.Instance.motorsOff = true;
+                //Object1.SetActive(false);
+            }
+        }*/
+
+        /*if (state == ApplianceState.NO_POWER)
+        {
+            if (isEngineOrMotors)
+            {
+                TimeManager.Instance.motorsOff = true;
+                //Object1.SetActive(false);
+            }
+        }*/
+    }
+
+
+    private void DoingTask()
+    {
+        //blahblah
+        //Add a small timer her-o which shows that stuff
+        TaskCompleted?.Invoke(use);
+    }
+
+
     private void DeductElectricity(object sender, EventArgs e)
     {
         //kilo watt minute
-        float kwM = kwH / 60;
+        //float kwM = kwH /  60;
 
         if (state == ApplianceState.ON)
         {
-            ResourceManager.electricity -= kwM;
-
-            //if it is an appliances that requires work to use, it fastforwards time
-            if (isManualAppliance)
-            {
-                if (timer == false && !otherTimer)
-                {
-                    TimeManager.Instance.timeRate *= 6f;
-                    StartCoroutine(Timer());
-                }
-                else if (otherTimer)
-                {
-                    TimeManager.Instance.timeRate /= 6f;
-                    otherTimer = false;
-                    RotateState();
-                }
-            }
-
-            if (isEngineOrMotors)
-            {
-                TimeManager.Instance.motorsOff = false;
-            }
-
-            //wind particles code
-
-            /*if (!TimeManager.Instance.motorsOff && isEngineOrMotors)
-            {
-                Object1.SetActive(true);
-                Object2.SetActive(true);
-                Object3.SetActive(true);
-            }*/
-
-
-        }
-
-        if (state == ApplianceState.OFF)
-        {
-            if (isEngineOrMotors)
-            {
-                TimeManager.Instance.motorsOff = true;
-                //Object1.SetActive(false);
-            }
-        }
-
-        if (state == ApplianceState.NO_POWER)
-        {
-            if (isEngineOrMotors)
-            {
-                TimeManager.Instance.motorsOff = true;
-                //Object1.SetActive(false);
-            }
+            ResourceManager.electricity -= kwH;
+            DoingTask();
+            //if it is an appliance that requires work to use, it fastforwards time
         }
     }
 
@@ -125,16 +147,8 @@ public class ApplianceScript : MonoBehaviour
         SetSymbol();
     }
 
-    private void SetSymbol() { symbolCanvas.SetSymbol(state, index); }
+    private void SetSymbol() { applianceManager.SetSymbol(state, index); }
 
-    IEnumerator Timer()
-    {
-        timer = true;
-        yield return new WaitForSeconds(amountOfSecondsDoingTask);
-        otherTimer = true;
-        timer = false;
-
-    }
 
     //Ok sometimes this gameobject spawns earlier than the Instance so put it in a while loop until it finds the instance
     IEnumerator SearchForInstance()
@@ -145,7 +159,7 @@ public class ApplianceScript : MonoBehaviour
             yield return null;
         }
         //Subscribe to the minutePassed event
-        TimeManager.Instance.minutePassed += DeductElectricity;
+        TimeManager.Instance.HourPassed += DeductElectricity;
         yield return null;
     }
 

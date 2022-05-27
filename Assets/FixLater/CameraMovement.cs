@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField]
+   /* [SerializeField]
     private Transform cam;
 
     public float speed;
@@ -15,8 +15,8 @@ public class CameraMovement : MonoBehaviour
     public Vector3 newPos;
     public Vector3 newZoom;
 
-   /* private float zoom = 30f;
-    private Vector3 dragOrigin;*/
+   //private float zoom = 30f;
+   // private Vector3 dragOrigin;
 
     //public float mapMinX, mapMaxX, mapMinY, mapMaxY;
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class CameraMovement : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * movementTime);
         cam.localPosition = Vector3.Lerp(cam.localPosition, newZoom, Time.deltaTime * movementTime);
-    }
+    }*/
 
    /* void Updpate()
     {

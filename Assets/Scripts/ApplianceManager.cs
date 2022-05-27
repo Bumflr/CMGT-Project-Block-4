@@ -6,6 +6,7 @@ using TMPro;
 
 public class ApplianceManager : MonoBehaviour
 {
+    //This script holds all of the Appliances
     public GameObject applianceIndicatorPrefab;
 
     public ApplianceScript[] appliances;
@@ -14,6 +15,7 @@ public class ApplianceManager : MonoBehaviour
 
     public Image onSymbol, offSymbol;
 
+    public TaskManager tm;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +31,12 @@ public class ApplianceManager : MonoBehaviour
             applianceIndicators[i] = a.GetComponent<Image>();
             applianceText[i] = a.GetComponentInChildren<TextMeshProUGUI>();
             applianceText[i].text = appliances[i].kwH.ToString() + " kwH";
+
+            //This should be somewhere else
+            appliances[i].TaskCompleted += tm.TaskCompleted;
+
             appliances[i].Begin();
-        } 
+        }
 
     }
 
@@ -43,7 +49,7 @@ public class ApplianceManager : MonoBehaviour
         {
             scripts[i] = gameObject[i].GetComponent<ApplianceScript>();
             scripts[i].index = i;
-            scripts[i].symbolCanvas = this;
+            scripts[i].applianceManager = this;
         }
 
         return scripts;

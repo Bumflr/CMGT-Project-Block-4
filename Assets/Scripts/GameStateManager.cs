@@ -1,5 +1,6 @@
 public class GameStateManager
 {
+    //This script holds the current game state, not really necessary to change tbh
     private static GameStateManager _instance;
     public static GameStateManager Instance
     {
@@ -32,21 +33,16 @@ public class GameStateManager
     }
 }
 
+//These are all of the game states
 public enum GameState
 {
     Gameplay,
     Paused,
-    UpgardingAndPlacing,
+    UpgradingAndPlacing,
     EndOfDay,
     GameOver,
     Cutscene,
     Loading
 }
 
-public enum Menu
-{
-    PAUSE_SCREEN,
-    SETTINGS,
-    TASKS,
-    UPGRADES
-}
+

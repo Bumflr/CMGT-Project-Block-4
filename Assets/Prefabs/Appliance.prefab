@@ -108,9 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c114bb55abe284799c41eed6936b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  symbolCanvas: {fileID: 0}
+  index: 0
   kwH: 2
-  isHydrogenAppliance: 0
   isManualAppliance: 0
   isEngineOrMotors: 0
   amountOfSecondsDoingTask: 2
-  state: 0
+  state: 1
+  rb: {fileID: 0}
