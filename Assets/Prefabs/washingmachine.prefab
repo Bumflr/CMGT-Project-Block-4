@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6152063061299109494}
   - component: {fileID: 4801137797038310135}
   - component: {fileID: 4801137797038310132}
+  - component: {fileID: 4712341749268682188}
   m_Layer: 0
   m_Name: washingmachine
   m_TagString: Appliance
@@ -108,14 +109,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c114bb55abe284799c41eed6936b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbolCanvas: {fileID: 0}
+  applianceManager: {fileID: 0}
   index: 0
   kwH: 20
-  Object1: {fileID: 0}
-  Object2: {fileID: 0}
-  Object3: {fileID: 0}
-  isHydrogenAppliance: 0
-  isManualAppliance: 0
-  isEngineOrMotors: 0
-  amountOfSecondsDoingTask: 0
+  use: 0
   state: 0
+  rb: {fileID: 0}
+--- !u!114 &4712341749268682188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647646640403038115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a044e6e6715aa4f4cb7320c2d84dccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
+  outlineScaleFactor: -1.1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}

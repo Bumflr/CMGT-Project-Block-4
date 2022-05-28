@@ -13,10 +13,12 @@ public class HoverOutline : MonoBehaviour
     {
         outlineRenderer = CreateOutline(outlineMaterial, outlineScaleFactor, outlineColor);
     }
+
     Renderer CreateOutline(Material outlineMat, float scaleFactor, Color color)
     {
         GameObject outlineObject = Instantiate(this.gameObject, transform.localPosition, transform.localRotation, transform);
         outlineObject.transform.localScale = new Vector3(1, 1, 1);
+        outlineObject.transform.localPosition = Vector3.zero;
 
         Renderer rend = outlineObject.GetComponent<Renderer>();
 
@@ -32,8 +34,10 @@ public class HoverOutline : MonoBehaviour
 
         return rend;
     }
+
     private void OnMouseEnter()
     {
+        Debug.Log("Hover");
         outlineRenderer.enabled = true;
     }
     private void OnMouseExit()
