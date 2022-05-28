@@ -6,14 +6,19 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
+    //Script which manages the flow of time
+    
+    //make these private and have the script find them on their own
     public Text timerText;
     public Text counterDayText;
-
     public Slider SliderTime;
 
     public static TimeManager Instance;
     public System.TimeSpan timeSpan = new System.TimeSpan(0, 0, 0, 0, 0);
     public System.TimeSpan StormTime = new System.TimeSpan(StormArrivalDate, 0, 0, 0, 0);
+    public float timeRate;
+    private float milliseconds;
+
 
     //If you want to change when the storm arrives, change it here
     //NOTE: DON'T CHANGE TO 1
@@ -22,13 +27,15 @@ public class TimeManager : MonoBehaviour
     //This is the Game Over Screen
     public FailScreen FailScreen;
 
-    public int currentDay;
-    public int currentMinute;
+    private int currentDay;
+    private int currentHour;
+    private int currentMinute;
 
-    public float timeRate;
+    public event EventHandler MinutePassed;
+    public event EventHandler HourPassed;
+    public event EventHandler DayPassed;
 
-    public event EventHandler minutePassed;
-
+    //Very hacky implementation and will probably be moved to a day and night cycle script
     public GameObject lighting;
     float rotationSpeed;
 
@@ -44,9 +51,9 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        float milliseconds = Time.deltaTime * 1000 * timeRate;
-        
-        timeSpan += new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
+        milliseconds = Time.deltaTime * 1000 * timeRate;
+
+        timeSpan = AddTime(timeSpan);
 
         if (motorsOff)
         {
@@ -54,8 +61,8 @@ public class TimeManager : MonoBehaviour
         }
 
         //Storm progression code START
-        float percentage = (((float)timeSpan.Days * 24 * 60) + ((float)timeSpan.Hours * 60) + ((float)timeSpan.Minutes)) / (((float)StormTime.Days * 24 * 60) + ((float)StormTime.Hours * 60) + ((float)StormTime.Minutes));
-        SliderTime.value = percentage;
+        float totalPercentage = (((float)timeSpan.Days * 24 * 60) + ((float)timeSpan.Hours * 60) + ((float)timeSpan.Minutes)) / (((float)StormTime.Days * 24 * 60) + ((float)StormTime.Hours * 60) + ((float)StormTime.Minutes));
+        SliderTime.value = totalPercentage;
 
         float percentageDay = (((float)timeSpan.Hours * 60) + (float)timeSpan.Minutes) / (1440);
         //Storm progression code END
@@ -65,30 +72,42 @@ public class TimeManager : MonoBehaviour
             currentMinute = timeSpan.Minutes;
             lighting.transform.Rotate(new Vector3(1f, 0, 0) * rotationSpeed);
 
-            minutePassed?.Invoke(this, EventArgs.Empty);
+            MinutePassed?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (currentHour != timeSpan.Hours)
+        {
+            currentHour = timeSpan.Hours;
+            HourPassed?.Invoke(this, EventArgs.Empty);
         }
 
         if (currentDay == (float)timeSpan.Days)
         {
             currentDay++;
+            DayPassed?.Invoke(this, EventArgs.Empty);
         }
 
         //when the storm reaches the player, they lose
-
-        if (percentage >= 1)
+        //Should also go into another script
+        if (totalPercentage >= 1)
         {
             FailScreen.setup();
             timeRate = 0;
         }
 
         counterDayText.text = ("Day: " + currentDay.ToString());
-        timerText.text = percentageDay.ToString("F2") + "This is the percentage of how much time has passed, used later for filling in a clock :p";
+        timerText.text = percentageDay.ToString("F2");
     }
 
-
-    public void AddTime(int value)
+    public float PercentageGet(TimeSpan localTimeSpan, float days)
     {
-        timeSpan += new System.TimeSpan(value, 0, 0);
+        return (((float)localTimeSpan.Days * 24 * 60) + ((float)localTimeSpan.Hours * 60) + (float)localTimeSpan.Minutes) / (1440 * days);
+    }
+
+    public TimeSpan AddTime(TimeSpan timeSpan)
+    {
+        timeSpan += new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
+        return timeSpan;
     }
 
 }

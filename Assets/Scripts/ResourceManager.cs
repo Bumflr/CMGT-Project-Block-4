@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
+    //Holds all of the resources as well as the UI 
     public Text electricityText;
     public Text scrapText;
-
 
     public float electricity;
     public float scrap;

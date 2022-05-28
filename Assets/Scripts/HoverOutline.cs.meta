@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/HoverOutline.cs.meta
 guid: 697e6e5909c84f047971e5806e403e45
+========
+guid: 70e0cb03e7ae5384d9541649a612b8d4
+>>>>>>>> Tasks-System-&-Knuckles:Assets/Scripts/PlayerInputs.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

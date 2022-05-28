@@ -13,6 +13,6 @@ public class Movement : MonoBehaviour
 
         Vector3 worldPosition = cam.ScreenToWorldPoint(mousePos);
 
-        Debug.Log(worldPosition);
+       // Debug.Log(worldPosition);
     }
 }
