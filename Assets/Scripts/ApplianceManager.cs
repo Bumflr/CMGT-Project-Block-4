@@ -64,7 +64,9 @@ public class ApplianceManager : MonoBehaviour
                 applianceText[index].enabled = false;
                 break;
             case ApplianceState.ON:
+
                 applianceIndicators[index].color = Color.blue;
+
                 applianceText[index].enabled = true;
                 break;
             case ApplianceState.NO_POWER:

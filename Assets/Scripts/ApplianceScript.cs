@@ -23,12 +23,12 @@ public enum Uses
     DryClothes,
     HeatWater,
     WashClothes,
-    FixElectricity
+    FixElectricity,
+    GeneratePower
 }
 
 public class ApplianceScript : MonoBehaviour
 {
-    private ResourceManager ResourceManager;
     [HideInInspector] public ApplianceManager applianceManager;
     [HideInInspector] public int index;
     public float kwH;
@@ -40,17 +40,14 @@ public class ApplianceScript : MonoBehaviour
 
     /*public bool isManualAppliance;
     public bool isEngineOrMotors;*/
+
     public delegate void TaskEventHandler(Uses uses);
     public event TaskEventHandler TaskCompleted;
 
     public ApplianceState state;
 
-    public Rigidbody rb;
-
     public void Begin()
     {
-        ResourceManager = FindObjectOfType<ResourceManager>();
-
         state = ApplianceState.OFF;
         SetSymbol();
         //Is like a just calling a function but a bit different
@@ -108,14 +105,6 @@ public class ApplianceScript : MonoBehaviour
     }
 
 
-    private void DoingTask()
-    {
-        //blahblah
-        //Add a small timer her-o which shows that stuff
-        TaskCompleted?.Invoke(use);
-    }
-
-
     private void DeductElectricity(object sender, EventArgs e)
     {
         //kilo watt minute
@@ -123,10 +112,19 @@ public class ApplianceScript : MonoBehaviour
 
         if (state == ApplianceState.ON)
         {
-            ResourceManager.electricity -= kwH;
+            if (use != Uses.GeneratePower) ResourceManager.Instance.electricity -= kwH;
+            else ResourceManager.Instance.electricity += kwH;
+
             DoingTask();
             //if it is an appliance that requires work to use, it fastforwards time
         }
+    }
+
+    private void DoingTask()
+    {
+        //blahblah
+        //Add a small timer her-o which shows that stuff
+        TaskCompleted?.Invoke(use);
     }
 
     public void RotateState()

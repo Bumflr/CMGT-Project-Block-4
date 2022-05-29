@@ -23,7 +23,7 @@ public class TaskManager : MonoBehaviour
             var t = Instantiate(taskPrefab, gameObject.transform.position, taskPrefab.transform.rotation, this.transform);
 
             t.gameObject.transform.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            t.gameObject.transform.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -i * yOffset);
+            t.gameObject.transform.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -50 + -i * yOffset);
 
             uiTasks[i] = t.gameObject.transform.GetComponent<UiTask>();
 
@@ -69,6 +69,7 @@ public class TaskManager : MonoBehaviour
                         tasks[i].currentStep = 0;
                         uiTasks[i].SetNextStep(tasks[i].stepsToFinish[tasks[i].currentStep]);
 
+                        ResourceManager.Instance.scrap++;
                         Debug.Log("Task Complete!");
                         //TASK COMPLETE
                     }
