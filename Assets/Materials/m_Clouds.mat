@@ -108,8 +108,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_2716a4fdd67f48c8a357bea30fea6815: {r: 2.92972, g: 3.3660612, b: 4.654307, a: 0}
-    - Vector2_9f7c234bbd8f4e98a333c556a660564b: {r: 0.001, g: 0.02, b: 0, a: 0}
-    - Vector2_c5c29299e36d438891f4ea6e7d7a7d85: {r: 0.005, g: 0.01, b: 0, a: 0}
+    - Vector2_9f7c234bbd8f4e98a333c556a660564b: {r: -0.01, g: -0.04, b: 0, a: 0}
+    - Vector2_c5c29299e36d438891f4ea6e7d7a7d85: {r: -0.005, g: -0.01, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
