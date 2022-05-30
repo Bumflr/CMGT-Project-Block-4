@@ -5,8 +5,6 @@ using UnityEngine;
 public class HoverOutline : MonoBehaviour
 {
     [SerializeField] private Material outlineMaterial;
-    [SerializeField] private float outlineScaleFactor;
-    [SerializeField] private Color outlineColor;
     private Renderer outlineRenderer;
 
     void Start()
