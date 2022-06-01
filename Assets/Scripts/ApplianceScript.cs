@@ -44,6 +44,10 @@ public class ApplianceScript : MonoBehaviour
     public delegate void TaskEventHandler(Uses uses);
     public event TaskEventHandler TaskCompleted;
 
+    public delegate void PoopEventHandler(ApplianceScript ass);
+    public event PoopEventHandler IsOn;
+    public event PoopEventHandler IsOff;
+
     public ApplianceState state;
 
     public void Begin()
@@ -133,9 +137,11 @@ public class ApplianceScript : MonoBehaviour
         {
             case ApplianceState.OFF:
                 state = ApplianceState.ON;
+                IsOn?.Invoke(this);
                 break;
             case ApplianceState.ON:
                 state = ApplianceState.OFF;
+                IsOff?.Invoke(this);
                 break;
             case ApplianceState.NO_POWER:
                 state = ApplianceState.OFF;
