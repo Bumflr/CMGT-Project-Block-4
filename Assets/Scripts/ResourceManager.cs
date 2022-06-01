@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ResourceManager : MonoBehaviour
 {
     //Holds all of the resources as well as the UI 
+
+    public static ResourceManager Instance;
     public Text electricityText;
     public Text scrapText;
 
@@ -16,6 +18,8 @@ public class ResourceManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Instance = this;
+
         electricity = 100;
         scrap = 0;
     }

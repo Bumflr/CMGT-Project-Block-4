@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Washing
   amountOfDays: 3
-  stepsToFinish: 00000000
+  stepsToFinish: 0900000007000000
   currentStep: 0

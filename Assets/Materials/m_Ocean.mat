@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6320788130485364229
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_Outline
-  m_Shader: {fileID: -6465566751694194690, guid: 82fd0e93464aaf74c8eb86c8079d6d7a, type: 3}
+  m_Name: m_Ocean
+  m_Shader: {fileID: -6465566751694194690, guid: d3ca1f23aeaa984438f18cdd6d8be468, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +32,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_5ea2c48345fa43339123832132f40dac:
+        m_Texture: {fileID: 2800000, guid: 3babb4cf485617b4d89ad18fa18f56a1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -76,6 +93,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_0f2ae1a2e97a408388665ceb02b3aa05: 0.05
+    - Vector1_17d6a6b58a34409da8badb41d1a739f2: 0.09
+    - Vector1_1c4d15fbbfa44c83a3420f99a22f0c8f: 4
+    - Vector1_45699da432d641a0885e22823ae2ceab: 1
+    - Vector1_54bd309253ac43f9a179283220d3c91c: 0.3
+    - Vector1_9e8fea7399f34b14a078cf5799dfed2c: 600
+    - Vector1_dea9df8424e047beb10be6ebf73ec056: 5
+    - Vector1_e1c2a3a533af4dde8e7127984a457b99: 0.8
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -95,7 +120,6 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: -1.1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -104,22 +128,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_18f4d4a5943c4578b6d68eba5da3e080: {r: 0.14293341, g: 0.37937322, b: 0.41509432, a: 0}
+    - Color_d089ad317f384a3ca1b8cd04ebc6d420: {r: 0.31594875, g: 0.8639756, b: 0.9433962, a: 0}
+    - Vector2_d5aba70216f04a3ba21e0580a8761bde: {r: 0.01, g: 1.5, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &2982443443251171040
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 4

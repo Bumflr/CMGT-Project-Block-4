@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Eating
   amountOfDays: 2
-  stepsToFinish: 0600000002000000
-  currentStep: 1
+  stepsToFinish: 0000000002000000
+  currentStep: 0

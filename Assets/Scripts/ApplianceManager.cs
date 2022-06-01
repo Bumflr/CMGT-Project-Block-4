@@ -16,6 +16,7 @@ public class ApplianceManager : MonoBehaviour
     public Image onSymbol, offSymbol;
 
     public TaskManager tm;
+    public EfficiencyManager em;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,8 @@ public class ApplianceManager : MonoBehaviour
         appliances = FindAppliances();
         applianceIndicators = new Image[appliances.Length];
         applianceText = new TextMeshProUGUI[appliances.Length];
+
+        em.StartYoShit(appliances.Length);
 
         for (int i = 0; i < appliances.Length; i++)
         {
@@ -35,8 +38,12 @@ public class ApplianceManager : MonoBehaviour
             //This should be somewhere else
             appliances[i].TaskCompleted += tm.TaskCompleted;
 
+            appliances[i].IsOn += em.AddEnergy;
+            appliances[i].IsOff += em.RemoveEnergy;
+
             appliances[i].Begin();
         }
+
 
     }
 
@@ -64,7 +71,9 @@ public class ApplianceManager : MonoBehaviour
                 applianceText[index].enabled = false;
                 break;
             case ApplianceState.ON:
+
                 applianceIndicators[index].color = Color.blue;
+
                 applianceText[index].enabled = true;
                 break;
             case ApplianceState.NO_POWER:

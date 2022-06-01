@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Entertainment
   amountOfDays: 7
-  stepsToFinish: 00000000
+  stepsToFinish: 06000000
   currentStep: 0

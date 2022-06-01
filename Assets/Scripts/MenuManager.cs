@@ -16,7 +16,7 @@ public class MenuManager : MonoBehaviour
 
     public static bool IsInitialised { get; private set; }
 
-    public static GameObject pauseMenu, settingsMenu, gameOverMenu;
+    public static GameObject pauseMenu, settingsMenu, tasksMenu, gameOverMenu;
     public static GameObject currentlyOn;
 
 
@@ -67,6 +67,7 @@ public class MenuManager : MonoBehaviour
 
         pauseMenu = canvas.transform.Find("PauseMenu").gameObject;
         settingsMenu = canvas.transform.Find("SettingsMenu(DEBUG)").gameObject;
+        tasksMenu = canvas.transform.Find("Task Panel").gameObject;
 
         IsInitialised = true;
     }
@@ -87,6 +88,10 @@ public class MenuManager : MonoBehaviour
             case Menu.SETTINGS:
                 currentlyOn = settingsMenu;
                 settingsMenu.SetActive(true);
+                break;
+            case Menu.TASKS:
+                currentlyOn = tasksMenu;
+                tasksMenu.SetActive(true);
                 break;
         }
 
