@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e002b5bd061147d4db002d97ef3a5567, type: 3}
   m_Name: EntertainmentTask
   m_EditorClassIdentifier: 
-  title: Entertainment
-  amountOfDays: 7
+  title: Boredom
+  amountOfDays: 3
   stepsToFinish: 06000000
   currentStep: 0

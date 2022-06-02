@@ -101,7 +101,7 @@ public class TimeManager : MonoBehaviour
 
     public float PercentageGet(TimeSpan localTimeSpan, float days)
     {
-        return (((float)localTimeSpan.Days * 24 * 60) + ((float)localTimeSpan.Hours * 60) + (float)localTimeSpan.Minutes) / (1440 * days);
+        return 1 - (((float)localTimeSpan.Days * 24 * 60) + ((float)localTimeSpan.Hours * 60) + (float)localTimeSpan.Minutes) / (1440 * days);
     }
 
     public TimeSpan AddTime(TimeSpan timeSpan)

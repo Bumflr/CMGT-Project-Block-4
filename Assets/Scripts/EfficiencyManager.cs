@@ -30,7 +30,7 @@ public class EfficiencyManager : MonoBehaviour
             t.gameObject.transform.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 40 + -i * yOffset);
 
             texts[i] = t.GetComponent<Text>();
-            texts[i].text = "JoMamma";
+            texts[i].text = " ";
 
             textsIndexes[i] = new Vector2(69, 69);
         }
@@ -70,7 +70,7 @@ public class EfficiencyManager : MonoBehaviour
                 }
                 finalText.text = totallest.ToString();
 
-                texts[(int)textsIndexes[i].x].text = "JoMamma";
+                texts[(int)textsIndexes[i].x].text = " ";
                 textsIndexes[i] = new Vector2(69 , 69);
                 break;
             }
@@ -81,7 +81,7 @@ public class EfficiencyManager : MonoBehaviour
     {
         for (int i = 0; i < texts.Length; i++)
         {
-            if (texts[i].text == "JoMamma")
+            if (texts[i].text == " ")
             {
                 Debug.Log(i);
 

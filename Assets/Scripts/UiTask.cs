@@ -51,7 +51,7 @@ public class UiTask : MonoBehaviour
 
     public void SetNextStep(Uses step)
     {
-        nextStepText.text = "Next Step: " + step.ToString();
+        nextStepText.text = "Next Objective: " + step.ToString();
     }
 
     public void SetCompletion()
@@ -66,7 +66,7 @@ public class UiTask : MonoBehaviour
         localTimeSpan = timeManager.AddTime(localTimeSpan);
         slider.value = timeManager.PercentageGet(localTimeSpan, maxAmountOfDays);
 
-        if (slider.value > dangerPercentage)
+        if (slider.value < dangerPercentage)
         {
             sliderFillImage.color = Color.red;
         }

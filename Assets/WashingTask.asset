@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e002b5bd061147d4db002d97ef3a5567, type: 3}
   m_Name: WashingTask
   m_EditorClassIdentifier: 
-  title: Washing
+  title: Cleanliness
   amountOfDays: 3
-  stepsToFinish: 0900000007000000
+  stepsToFinish: 09000000
   currentStep: 0
