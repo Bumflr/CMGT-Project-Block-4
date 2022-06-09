@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
-    public Task[] tasks;
+    /*public Task[] tasks;
     public UiTask[] uiTasks;
     public GameObject taskPrefab;
     public float dangerPercentage;
@@ -28,21 +28,21 @@ public class TaskManager : MonoBehaviour
             uiTasks[i] = t.gameObject.transform.GetComponent<UiTask>();
 
             tasks[i].currentStep = 0;
-            uiTasks[i].SetData(tasks[i].title, tasks[i].amountOfDays, dangerPercentage, tasks[i].stepsToFinish[tasks[i].currentStep]);
+            uiTasks[i].SetData(tasks[i].title, tasks[i].amountOfActions, dangerPercentage, tasks[i].stepsToFinish[tasks[i].currentStep]);
         }
 
         StartCoroutine(SearchForInstance());
     }
 
-    public void DayPassed(object sender, EventArgs e)
+    public void ActionPassed()
     {
         for (int i = 0; i < tasks.Length; i++)
         {
             uiTasks[i].DayPassed();
         }
-    }
+    }*/
 
-    public void TaskCompleted(Uses use)
+   /* public void TaskCompleted(Uses use)
     {
         for (int i = 0; i < tasks.Length; i++)
         {
@@ -76,7 +76,7 @@ public class TaskManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     IEnumerator SearchForInstance()
     {
@@ -86,7 +86,7 @@ public class TaskManager : MonoBehaviour
             yield return null;
         }
         //Subscribe to the minutePassed event
-        TimeManager.Instance.DayPassed += DayPassed;
+        //TimeManager.Instance.DayPassed += DayPassed;
         yield return null;
     }
 

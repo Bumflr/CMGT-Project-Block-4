@@ -7,107 +7,204 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour
 {
     //Script which manages the flow of time
-    
-    //make these private and have the script find them on their own
-    public Text timerText;
+    //Ok not anymore lol it turned into the glue holding every piece of code together which is fucking stupid but haha spaghetti code go brrr
+
     public Text counterDayText;
+    public Text turnsText;
     public Slider SliderTime;
+    public Button nextStepButton;
+    public Image clock;
+
+    public int actionPoints;
+    public float lerpTime;
+    public float timeLimit;
+
+
+    private float currentTime; //0 to 1440
+    private int currentActionPoints;
+    private int currentDay;
+    public float currentStorm;
+    private Vector3 currentRotation;
+
+    public ApplianceManager am;
+    public ResourceManager rm;
+    public EfficiencyManager em;
+    public EndOfDayResultsScript eodr;
+
+    float newHunger;
+    float newCleanliness;
+    float newBoredom;
+    float newElectricity;
+    float newTime;
+    float newRotation;
+    float newStorm;
+
+    private float maxStorm;
+
+    float difference;
+    static float maxTime = 1440;
 
     public static TimeManager Instance;
-    public System.TimeSpan timeSpan = new System.TimeSpan(0, 0, 0, 0, 0);
-    public System.TimeSpan StormTime = new System.TimeSpan(StormArrivalDate, 0, 0, 0, 0);
-    public float timeRate;
-    private float milliseconds;
 
-
-    //If you want to change when the storm arrives, change it here
-    //NOTE: DON'T CHANGE TO 1
-    public static int StormArrivalDate = 4;
+    private bool buttonPressed;
 
     //This is the Game Over Screen
-    public FailScreen FailScreen;
+    public GameObject FailScreen;
 
-    private int currentDay;
-    private int currentHour;
-    private int currentMinute;
-
-    public event EventHandler MinutePassed;
-    public event EventHandler HourPassed;
-    public event EventHandler DayPassed;
-
-    //Very hacky implementation and will probably be moved to a day and night cycle script
     public GameObject lighting;
-    float rotationSpeed;
+    private float percentageNextStep = 1;
 
     [HideInInspector] public bool motorsOff;
 
     private void Awake()
     {
-        Instance = this;
-        rotationSpeed = 360 / 24f / 60;
 
+        Instance = this;
+
+        currentActionPoints = actionPoints;
+        currentRotation = new Vector3(-30, -56, 0);
+
+        newRotation = currentRotation.x;
+        newElectricity = rm.electricity;
+        newBoredom = rm.boredom;
+        newCleanliness = rm.cleanliness;
+        newHunger = rm.hunger;
+        newStorm = currentStorm;
+        maxStorm = currentStorm;
+        difference = maxTime / actionPoints;
         gameObject.SetActive(true);
+
+        rm.oldElectricity = rm.electricity;
+        rm.oldHunger = rm.hunger;
+        rm.oldBoredom = rm.boredom;
+        rm.oldCleanliness = rm.cleanliness;
+        rm.oldScrap = rm.scrap;
+    }
+
+    public void NextTurn()
+    {
+        buttonPressed = true;
     }
 
     void Update()
     {
-        milliseconds = Time.deltaTime * 1000 * timeRate;
-
-        timeSpan = AddTime(timeSpan);
-
-        if (motorsOff)
+        //Holy shit this really has turned to spaghetti code now, making use of so many different scripts which used to have different functions and now not anymore bruuuuuuuuuuuuh
+        //ah well
+        if (percentageNextStep < 0.9999f)
         {
-            StormTime -= new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
+            nextStepButton.transform.gameObject.GetComponentInChildren<Text>().text = "WAITING..";
+        }
+        else
+        {
+            nextStepButton.transform.gameObject.GetComponentInChildren<Text>().text = "NEXT TURN";
         }
 
-        //Storm progression code START
-        float totalPercentage = (((float)timeSpan.Days * 24 * 60) + ((float)timeSpan.Hours * 60) + ((float)timeSpan.Minutes)) / (((float)StormTime.Days * 24 * 60) + ((float)StormTime.Hours * 60) + ((float)StormTime.Minutes));
-        SliderTime.value = totalPercentage;
-
-        float percentageDay = (((float)timeSpan.Hours * 60) + (float)timeSpan.Minutes) / (1440);
-        //Storm progression code END
-
-        if (currentMinute != timeSpan.Minutes)
+        if (buttonPressed && percentageNextStep >= 0.9999f)
         {
-            currentMinute = timeSpan.Minutes;
-            lighting.transform.Rotate(new Vector3(1f, 0, 0) * rotationSpeed);
+            buttonPressed = false;
+            newTime = currentTime + (maxTime / actionPoints);
+            
+            newRotation = currentRotation.x + ((maxTime / actionPoints) / 4);
+            newElectricity = rm.electricity - em.totalElec;
 
-            MinutePassed?.Invoke(this, EventArgs.Empty);
+
+            newBoredom = em.totalBored == 0 ? rm.boredom - rm.depletion : rm.boredom +em.totalBored;
+            newCleanliness = em.totalClean == 0 ? rm.cleanliness - rm.depletion : rm.cleanliness + em.totalClean;
+            newHunger = em.totalHungy == 0 ? rm.hunger - rm.depletion : rm.hunger + em.totalHungy;
+
+            //tm.ActionPassed();
+            currentActionPoints--;
+
+            newStorm = em.motorOn ? currentStorm - 1 : currentStorm - 2;
+        }
+        else
+        {
+            buttonPressed = false;
         }
 
-        if (currentHour != timeSpan.Hours)
+        if (currentTime > maxTime)
         {
-            currentHour = timeSpan.Hours;
-            HourPassed?.Invoke(this, EventArgs.Empty);
-        }
+            currentTime = 0;
+            newTime = 0 + (maxTime / actionPoints);
 
-        if (currentDay == (float)timeSpan.Days)
-        {
+            //currentRotation.x = -30;
+            newRotation = -30 + ((maxTime / actionPoints) / 4);
+
+            currentActionPoints = actionPoints;
+
             currentDay++;
-            DayPassed?.Invoke(this, EventArgs.Empty);
+            rm.scrap++;
+            NextDayTransition();
         }
 
-        //when the storm reaches the player, they lose
-        //Should also go into another script
-        if (totalPercentage >= 1)
+        currentRotation.x = ValueLerpGet(currentRotation.x, newRotation);
+
+        lighting.transform.eulerAngles = currentRotation;
+        clock.transform.eulerAngles = new Vector3(0, 0, currentRotation.x - 40);
+
+        currentTime = ValueLerpGet(currentTime, newTime);
+
+        float percentageDay = currentTime / 1440;
+        if (maxStorm != currentStorm) percentageNextStep =  newTime == 0 ? 0 : 1 - ((newTime - currentTime) / difference);
+
+        am.SetSliderValues(percentageNextStep);
+
+        rm.electricity = ValueLerpGet(rm.electricity, newElectricity);
+
+        rm.hunger = ValueLerpGet(rm.hunger, newHunger);
+
+        rm.boredom = ValueLerpGet(rm.boredom, newBoredom);
+
+        rm.cleanliness = ValueLerpGet(rm.cleanliness, newCleanliness);
+
+        float h = rm.hunger / 100;
+        float b = rm.boredom / 100;
+        float c = rm.cleanliness / 100;
+        rm.SetSliderValues(h, c, b);
+
+
+        currentStorm = ValueLerpGet(currentStorm, newStorm);
+
+        SliderTime.value = 1 - (currentStorm / maxStorm);
+
+        if (currentStorm <= 0)
         {
-            FailScreen.setup();
-            timeRate = 0;
+            RenderSettings.fogDensity = 0.03f;
         }
 
+    
         counterDayText.text = ("Day: " + currentDay.ToString());
-        timerText.text = percentageDay.ToString("F2");
+        turnsText.text = currentActionPoints.ToString();
     }
 
     public float PercentageGet(TimeSpan localTimeSpan, float days)
     {
         return 1 - (((float)localTimeSpan.Days * 24 * 60) + ((float)localTimeSpan.Hours * 60) + (float)localTimeSpan.Minutes) / (1440 * days);
     }
-
-    public TimeSpan AddTime(TimeSpan timeSpan)
+    
+    public float ValueLerpGet(float inputValue, float newValue)
     {
-        timeSpan += new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
-        return timeSpan;
+        inputValue = Mathf.Lerp(inputValue, newValue, lerpTime / timeLimit * Time.deltaTime);
+
+        return inputValue;
+    }
+
+    public void NextDayTransition()
+    {
+        float e = rm.electricity - rm.oldElectricity;
+        float h = rm.hunger - rm.oldHunger;
+        float b = rm.boredom - rm.oldBoredom;
+        float c = rm.cleanliness - rm.oldCleanliness;
+        float s = rm.scrap - rm.oldScrap;
+        float d = currentStorm / actionPoints;
+
+        eodr.GetData(e, h, b, c, s, d, currentDay - 1);
+
+        rm.oldElectricity = rm.electricity;
+        rm.oldHunger = rm.hunger;
+        rm.oldBoredom = rm.boredom;
+        rm.oldCleanliness = rm.cleanliness;
+        rm.oldScrap = rm.scrap;
     }
 
 }

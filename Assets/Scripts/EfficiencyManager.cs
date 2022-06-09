@@ -14,13 +14,22 @@ public class EfficiencyManager : MonoBehaviour
     public float yOffset;
 
     public float[] total;
-    public float totallest;
+    public float[] secondaryTotal;
+
+    public float totalElec;
+    public float totalHungy;
+    public float totalBored;
+    public float totalClean;
+
+    public bool motorOn;
+
     // Start is called before the first frame update
     public void StartYoShit(int length)
     {
         texts = new Text[length];
         textsIndexes = new Vector2[length];
         total = new float[length];
+        secondaryTotal = new float[length];
 
         for (int i = 0; i < texts.Length; i++)
         {
@@ -38,40 +47,100 @@ public class EfficiencyManager : MonoBehaviour
 
     public void AddEnergy(ApplianceScript ass)
     {
-        totallest = 0;
+        totalElec = 0;
 
+        //you can probably guess what my mental state was around the time i wrote this code lol
+        // i mean tbf i am losing my mind rigt now as well lololol
         Vector2 INToMyAss = new Vector2(AssignInt(), ass.index);
-
-        texts[(int)INToMyAss.x].text = ass.kwH.ToString();
 
         textsIndexes[(int)INToMyAss.x] = INToMyAss;
 
-        total[(int)INToMyAss.x] = ass.kwH;
+        total[(int)INToMyAss.x] = ass.use == Uses.GeneratePower ? -ass.kwH : ass.kwH;
+
+        secondaryTotal[(int)INToMyAss.x] = ass.gains;
+
+        texts[(int)INToMyAss.x].text = total[(int)INToMyAss.x].ToString();
+
+        switch (ass.use)
+        {
+            case Uses.Boredom:
+                totalBored += secondaryTotal[(int)INToMyAss.x];
+                break;
+            case Uses.Hunger:
+                totalHungy += secondaryTotal[(int)INToMyAss.x];
+                break;
+            case Uses.Cleanliness:
+                totalClean += secondaryTotal[(int)INToMyAss.x];
+                break;
+        }
+
+        if (ass.use == Uses.Engine)
+        {
+            motorOn = true;
+        }
+
         for (int i = 0; i < total.Length; i++)
         {
-            totallest += total[i];
+            totalElec += total[i];
         }
-        finalText.text = totallest.ToString();
+
+        float bruh = -totalElec;
+
+        if (totalElec >= 0)
+        {
+            finalText.text = "- " + totalElec.ToString();
+            finalText.color = Color.red;
+        }
+        else
+        {
+            finalText.text = "+ " + bruh.ToString();
+            finalText.color = Color.green;
+        }
+
+
+
     }
 
     public void RemoveEnergy(ApplianceScript ass)
     {
-        totallest = 0;
+        totalElec = 0;
 
         for (int i = 0; i < textsIndexes.Length; i++)
         {
             if (textsIndexes[i].y == ass.index)
             {
+                switch (ass.use)
+                {
+                    case Uses.Boredom:
+                        totalBored -= secondaryTotal[(int)textsIndexes[i].x];
+                        break;
+                    case Uses.Hunger:
+                        totalHungy -= secondaryTotal[(int)textsIndexes[i].x];
+                        break;
+                    case Uses.Cleanliness:
+                        totalClean -= secondaryTotal[(int)textsIndexes[i].x];
+                        break;
+                }
+
+                if (ass.use == Uses.Engine)
+                {
+                    motorOn = false;
+                }
+
                 total[(int)textsIndexes[i].x] = 0;
+                secondaryTotal[(int)textsIndexes[i].x] = 0;
 
                 for (int j = 0; j < total.Length; j++)
                 {
-                    totallest += total[j];
+                    totalElec += total[j];
+
+                   
                 }
-                finalText.text = totallest.ToString();
+
+                finalText.text = totalElec.ToString();
 
                 texts[(int)textsIndexes[i].x].text = " ";
-                textsIndexes[i] = new Vector2(69 , 69);
+                textsIndexes[i] = new Vector2(69, 69);
                 break;
             }
         }

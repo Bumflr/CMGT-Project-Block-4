@@ -9,14 +9,15 @@ public class HoverOutline : MonoBehaviour
 
     void Start()
     {
-        outlineRenderer = CreateOutline(outlineMaterial/*, outlineScaleFactor, outlineColor*/);
+        outlineRenderer = CreateOutline(outlineMaterial);
     }
 
-    Renderer CreateOutline(Material outlineMat/*, float scaleFactor, Color color*/)
+    Renderer CreateOutline(Material outlineMat)
     {
         GameObject outlineObject = Instantiate(this.gameObject, transform.localPosition, transform.localRotation, transform);
         outlineObject.transform.localScale = new Vector3(1, 1, 1);
         outlineObject.transform.localPosition = Vector3.zero;
+        outlineObject.tag = "Untagged";
 
         Renderer rend = outlineObject.GetComponent<Renderer>();
 

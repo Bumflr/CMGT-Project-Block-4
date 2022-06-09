@@ -13,18 +13,12 @@ public enum ApplianceState
 
 public enum Uses
 {
-    StoreFood,
-    CookFood,
-    FryFood,
-    WashHands,
-    WashDishes,
-    MoveShip,
-    Entertain,
-    DryClothes,
-    HeatWater,
-    WashClothes,
-    FixElectricity,
-    GeneratePower
+   
+    Hunger,
+    Cleanliness,
+    Boredom,
+    GeneratePower,
+    Engine
 }
 
 public class ApplianceScript : MonoBehaviour
@@ -32,7 +26,10 @@ public class ApplianceScript : MonoBehaviour
     [HideInInspector] public ApplianceManager applianceManager;
     [HideInInspector] public int index;
     public float kwH;
+    public float gains;
     public Uses use;
+
+    public ResourceManager rm;
     //wind objects
     /*public GameObject Object1;
     public GameObject Object2;
@@ -41,8 +38,6 @@ public class ApplianceScript : MonoBehaviour
     /*public bool isManualAppliance;
     public bool isEngineOrMotors;*/
 
-    public delegate void TaskEventHandler(Uses uses);
-    public event TaskEventHandler TaskCompleted;
 
     public delegate void PoopEventHandler(ApplianceScript ass);
     public event PoopEventHandler IsOn;
@@ -55,10 +50,11 @@ public class ApplianceScript : MonoBehaviour
         state = ApplianceState.OFF;
         SetSymbol();
         //Is like a just calling a function but a bit different
-        StartCoroutine(SearchForInstance());
+        //StartCoroutine(SearchForInstance());
     }
 
     //This currently does nothing
+    //I'll also add the wind effects back later
     public void OnClick()
     {
         /*if (isManualAppliance)
@@ -108,29 +104,6 @@ public class ApplianceScript : MonoBehaviour
         }*/
     }
 
-
-    private void DeductElectricity(object sender, EventArgs e)
-    {
-        //kilo watt minute
-        //float kwM = kwH /  60;
-
-        if (state == ApplianceState.ON)
-        {
-            if (use != Uses.GeneratePower) ResourceManager.Instance.electricity -= kwH;
-            else ResourceManager.Instance.electricity += kwH;
-
-            DoingTask();
-            //if it is an appliance that requires work to use, it fastforwards time
-        }
-    }
-
-    private void DoingTask()
-    {
-        //blahblah
-        //Add a small timer her-o which shows that stuff
-        TaskCompleted?.Invoke(use);
-    }
-
     public void RotateState()
     {
         switch (state)
@@ -151,11 +124,22 @@ public class ApplianceScript : MonoBehaviour
         SetSymbol();
     }
 
+    public void UpgradeState()
+    {
+        if (rm.scrap > 0)
+        {
+            kwH = kwH * 0.5f;
+            gains *= 2;
+            rm.scrap--;
+
+        }
+    }
+
     private void SetSymbol() { applianceManager.SetSymbol(state, index); }
 
 
     //Ok sometimes this gameobject spawns earlier than the Instance so put it in a while loop until it finds the instance
-    IEnumerator SearchForInstance()
+    IEnumerator SearchForInstance(object desiredScript)
     {
         while (TimeManager.Instance == null)
         {
@@ -163,7 +147,7 @@ public class ApplianceScript : MonoBehaviour
             yield return null;
         }
         //Subscribe to the minutePassed event
-        TimeManager.Instance.HourPassed += DeductElectricity;
+        //TimeManager.Instance.HourPassed += DeductElectricity;
         yield return null;
     }
 

@@ -7,7 +7,7 @@ using TMPro;
 
 public class UiTask : MonoBehaviour
 {
-    private string title;
+  /*  private string title;
     private int maxAmountOfDays;
     private int currentAmountOfDays;
     private float dangerPercentage;
@@ -30,7 +30,7 @@ public class UiTask : MonoBehaviour
         timeManager = TimeManager.Instance;
     }
 
-    public void SetData(string title, int maxAmountOfDays,float dangerPercentage, Uses step)
+    public void SetData(string title, int maxAmountOfDays, float dangerPercentage, Uses step)
     {
         this.title = title;
         this.maxAmountOfDays = maxAmountOfDays;
@@ -39,22 +39,22 @@ public class UiTask : MonoBehaviour
 
         titleText.text = title;
         amountOfDaysText.text = "Days Left: " + maxAmountOfDays.ToString();
-        SetNextStep(step);
+        //SetNextStep(step);
     }
 
     public void DayPassed()
     {
         currentAmountOfDays--;
 
-        amountOfDaysText.text = currentAmountOfDays != 1 ? "Days Left: " + currentAmountOfDays.ToString() : "Day Left: " + currentAmountOfDays.ToString();
+        amountOfDaysText.text = currentAmountOfDays != 1 ? "Turns Left: " + currentAmountOfDays.ToString() : "Turn Left: " + currentAmountOfDays.ToString();
     }
 
-    public void SetNextStep(Uses step)
+   /* public void SetNextStep(Uses step)
     {
         nextStepText.text = "Next Objective: " + step.ToString();
-    }
+    }*/
 
-    public void SetCompletion()
+    /*public void SetCompletion()
     {
         currentAmountOfDays = maxAmountOfDays;
         DayPassed();
@@ -63,7 +63,7 @@ public class UiTask : MonoBehaviour
 
     private void Update()
     {
-        localTimeSpan = timeManager.AddTime(localTimeSpan);
+        //localTimeSpan = timeManager.AddTime(localTimeSpan);
         slider.value = timeManager.PercentageGet(localTimeSpan, maxAmountOfDays);
 
         if (slider.value < dangerPercentage)
@@ -74,5 +74,5 @@ public class UiTask : MonoBehaviour
         {
             sliderFillImage.color = defaultColor;
         }
-    }
+    }*/
 }

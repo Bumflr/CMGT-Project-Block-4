@@ -6,8 +6,7 @@ using TMPro;
 
 public class PopUpPanel : MonoBehaviour
 {
-    public Image self;
-    public TextMeshProUGUI title, info, type;
+    public TextMeshProUGUI title, info, gains;
 
     private Color oldColor;
     public Color newColor;
@@ -22,19 +21,19 @@ public class PopUpPanel : MonoBehaviour
         SetAlpha(0);
     }
 
-    public void SetData(string name, float info, bool type)
+    public void SetData(string name, float info, float gains, Uses uses)
     {
         this.title.text = name;
         this.info.text = "Uses "+ info.ToString() + " kwH";
-        this.type.text = type ? "(Continious)" : "(Single Use)";
+        this.gains.text = uses == Uses.Cleanliness ? "Provides " + gains + " " + uses.ToString() : "Alleviates " + gains +" " + uses.ToString();
     }
 
     public void SetAlphaSmooth(Color alpha)
     {
         if (!firstTime)
         {
-            oldColor = self.color;
-            newColor = self.color;
+           /*oldColor = self.color;
+            newColor = self.color;*/
 
             oldColorText = title.color;
             newColorText = title.color;
@@ -45,35 +44,32 @@ public class PopUpPanel : MonoBehaviour
 
         timer += Time.deltaTime * 4;
 
-        newColor = Color.Lerp(oldColor, alpha, timer);
+        //newColor = Color.Lerp(oldColor, alpha, timer);
         newColorText = Color.Lerp(oldColorText, new Color(oldColorText.r, oldColorText.g, oldColorText.b,alpha.a), timer);
 
-        self.color = newColor;
+        //self.color = newColor;
 
         title.color = newColorText;
         info.color = newColorText;
-        type.color = newColorText;
+        gains.color = newColorText;
     }
-    public void FadeOut()
-    {
-        self.CrossFadeAlpha(0, 1f, false);
-    }
+
 
     public void SetAlpha(float alpha)
     {
         firstTime = false;
 
-        var tempColor = self.color;
+        //var tempColor = self.color;
         var tempColorText = title.color;
 
-        tempColor.a = alpha;
+       // tempColor.a = alpha;
         tempColorText.a = alpha;
 
-        self.color = tempColor;
+        //self.color = tempColor;
 
         title.color = tempColorText;
         info.color = tempColorText;
-        type.color = tempColorText;
+        gains.color = tempColorText;
 
     }
 }

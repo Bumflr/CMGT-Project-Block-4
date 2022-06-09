@@ -12,8 +12,9 @@ public class ApplianceManager : MonoBehaviour
     public ApplianceScript[] appliances;
     private Image[] applianceIndicators;
     private TextMeshProUGUI[] applianceText;
+    private Slider[] applianceSlider;
 
-    public Image onSymbol, offSymbol;
+    public Sprite onSymbol, offSymbol;
 
     public TaskManager tm;
     public EfficiencyManager em;
@@ -24,6 +25,8 @@ public class ApplianceManager : MonoBehaviour
         appliances = FindAppliances();
         applianceIndicators = new Image[appliances.Length];
         applianceText = new TextMeshProUGUI[appliances.Length];
+        applianceSlider = new Slider[appliances.Length];
+
 
         em.StartYoShit(appliances.Length);
 
@@ -33,10 +36,13 @@ public class ApplianceManager : MonoBehaviour
 
             applianceIndicators[i] = a.GetComponent<Image>();
             applianceText[i] = a.GetComponentInChildren<TextMeshProUGUI>();
+            applianceSlider[i] = a.GetComponentInChildren<Slider>();
+
             applianceText[i].text = appliances[i].kwH.ToString() + " kwH";
 
+            //applianceSlider
             //This should be somewhere else
-            appliances[i].TaskCompleted += tm.TaskCompleted;
+            //appliances[i].TaskCompleted += tm.TaskCompleted;
 
             appliances[i].IsOn += em.AddEnergy;
             appliances[i].IsOff += em.RemoveEnergy;
@@ -62,17 +68,32 @@ public class ApplianceManager : MonoBehaviour
         return scripts;
     }
 
+    public void SetSliderValues(float value)
+    {
+        for (int i = 0; i < applianceSlider.Length; i++)
+        {
+            if (appliances[i].state == ApplianceState.ON)
+            {
+                applianceSlider[i].value = value;
+            }
+        }
+    }
+
     public void SetSymbol(ApplianceState state, int index)
     {
         switch (state)
         {
             case ApplianceState.OFF:
-                applianceIndicators[index].color = Color.red;
+                applianceIndicators[index].color = Color.grey;
+                applianceIndicators[index].sprite = offSymbol;
+                applianceSlider[index].gameObject.SetActive(false);
                 applianceText[index].enabled = false;
                 break;
             case ApplianceState.ON:
 
-                applianceIndicators[index].color = Color.blue;
+                applianceIndicators[index].color = Color.yellow;
+                applianceIndicators[index].sprite = onSymbol;
+                applianceSlider[index].gameObject.SetActive(true);
 
                 applianceText[index].enabled = true;
                 break;

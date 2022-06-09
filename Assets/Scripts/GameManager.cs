@@ -7,16 +7,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     //This script holds all of the managers to interlock with each other if needed.
+    //HAHAHAH CUTE
 
-    public ResourceManager resourceManager;
-    public WeatherManager weatherManager;
-
-    // Update is called once per frame
     public static GameManager Instance;
 
-    public FailScreen failScreen;
-
-    public float maxTime;
+    public ApplianceManager am;
+    public ResourceManager rm;
+    public EfficiencyManager em;
+    public EndOfDayResultsScript eodr;
 
     private void Awake()
     {
@@ -25,69 +23,43 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        //StartCoroutine(SearchForInstance(TimeManager.Instance));
     }
-        /*if (resourceManager.electricity <= 0)
+
+    /*IEnumerator SearchForTimeInstance(GameObject )
+    {
+        desiredScript.GetType();
+
+        if (desiredScript is TimeManager)
         {
-            failScreen.setup();
-        }
-
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        { 
-
-            if (savedHit.transform != hit.transform)
+            while (TimeManager.Instance == null)
             {
-                popUpPrefab.GetComponent<PopUpPanel>().SetAlpha(0);
-                savedHit = hit;
-                interactedWith = false;
-            }
-            else
-            {
+                yield return null;
 
-                if (interactedWith)
-                {
-                    popUpPrefab.GetComponent<PopUpPanel>().SetAlphaSmooth(new Color(1, 1, 1, 1));
-                }
-                else
-                {
-                    popUpPrefab.GetComponent<PopUpPanel>().SetAlpha(0);
-
-                    Vector2 ViewportPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-
-                    Vector2 proportionalPosition = new Vector2(ViewportPosition.x * CanvasRect.sizeDelta.x, ViewportPosition.y * CanvasRect.sizeDelta.y);
-
-                    // Set the position and remove the screen offset
-                    popUpPrefab.localPosition = proportionalPosition + offset - uiOffset;
-                }
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (hit.transform.tag == "Appliance")
-                {
-                    popUpPrefab.GetComponent<PopUpPanel>().SetData(hit.transform.name, hit.transform.gameObject.GetComponent<ApplianceScript>().kwH, true);
-                    interactedWith = !interactedWith;
-                }
-                else
-                    interactedWith = false;
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (hit.transform.tag == "Appliance")
-                {
-                    hit.transform.GetComponent<ApplianceScript>().RotateState();
-                    return;
-                }
+                
             }
         }
-        else
+        else if (desiredScript is ResourceManager)
         {
-            interactedWith = false;
-            popUpPrefab.GetComponent<PopUpPanel>().SetAlpha(0);
+            while (ResourceManager.Instance == null)
+            {
+                yield return null;
+
+            }
+        }
+
+        yield return null;
+
+        /*while (TimeManager.Instance == null)
+        {
+            //If you remove this line of code Unity crashes by the way :D
+            yield return null;
         }*/
-    
+        //Subscribe to the minutePassed event
+        //TimeManager.Instance.HourPassed += DeductElectricity;
+        //yield return null;
+
+    //}
+
+
 }

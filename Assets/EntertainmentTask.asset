@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EntertainmentTask
   m_EditorClassIdentifier: 
   title: Boredom
-  amountOfDays: 3
-  stepsToFinish: 06000000
+  amountOfActions: 4
+  stepsToFinish: 02000000
   currentStep: 0

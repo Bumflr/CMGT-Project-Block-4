@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class FailScreen : MonoBehaviour
 {
-    public void setup()
-    {
-        gameObject.SetActive(true);
-    }
 
     public void RestartButton() 
     {

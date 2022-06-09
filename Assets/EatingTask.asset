@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EatingTask
   m_EditorClassIdentifier: 
   title: Hunger
-  amountOfDays: 2
-  stepsToFinish: 01000000
+  amountOfActions: 5
+  stepsToFinish: 00000000
   currentStep: 0

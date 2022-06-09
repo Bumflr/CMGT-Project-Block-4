@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WashingTask
   m_EditorClassIdentifier: 
   title: Cleanliness
-  amountOfDays: 3
-  stepsToFinish: 09000000
+  amountOfActions: 8
+  stepsToFinish: 01000000
   currentStep: 0

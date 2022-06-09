@@ -6,7 +6,7 @@ using UnityEngine;
 public class Task : ScriptableObject
 {
     public string title;
-    public int amountOfDays;
+    public int amountOfActions;
 
     public Uses[] stepsToFinish;
     public int currentStep;
