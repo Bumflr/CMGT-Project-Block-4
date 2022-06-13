@@ -9,14 +9,12 @@ public class ResourceManager : MonoBehaviour
     //Holds all of the resources as well as the UI 
 
     public static ResourceManager Instance;
-
     public Text electricityText;
     public Text scrapText;
 
     public GameObject failscreen;
 
 
-    public float electricity, hunger, cleanliness, boredom, scrap;
 
     public float statDepletionRate;
 
@@ -24,7 +22,10 @@ public class ResourceManager : MonoBehaviour
     public Slider cleanSlider;
     public Slider boredSlider;
 
+    public float electricity, hunger, cleanliness, boredom, scrap;
     public float oldElectricity, oldHunger, oldCleanliness, oldBoredom, oldScrap;
+    public float newElectricity, newHunger, newCleanliness, newBoredom, newTime, newRotation, newStorm;
+
 
     // Start is called before the first frame update
     void Awake()

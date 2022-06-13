@@ -7,15 +7,6 @@ public class MenuControls : MonoBehaviour
     //This script holds all of the functions we should give to the buttons.
     //I dont know why 2021 Daniel decided to put all of these functions in one single script instead of just giving every button it's own small script but whatever ig.
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Pause"))
-        {
-            Debug.Log("what");
-            PauseController.Pausing();
-        }
-    }
-
     public void OnClick_Resume()
     {
         PauseController.Pausing();

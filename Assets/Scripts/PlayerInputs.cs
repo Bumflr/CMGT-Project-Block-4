@@ -13,6 +13,12 @@ public class PlayerInputs : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Pause"))
+        {
+            Debug.Log("what");
+            PauseController.Pausing();
+        }
+
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 

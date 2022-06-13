@@ -14,9 +14,6 @@ public class ApplianceManager : MonoBehaviour
     private TextMeshProUGUI[] applianceText;
     private Slider[] applianceSlider;
 
-    public Sprite onSymbol, offSymbol;
-
-    public TaskManager tm;
     public EfficiencyManager em;
 
     // Start is called before the first frame update
@@ -28,7 +25,7 @@ public class ApplianceManager : MonoBehaviour
         applianceSlider = new Slider[appliances.Length];
 
 
-        em.StartYoShit(appliances.Length);
+        em.Starting(appliances.Length);
 
         for (int i = 0; i < appliances.Length; i++)
         {
@@ -39,10 +36,6 @@ public class ApplianceManager : MonoBehaviour
             applianceSlider[i] = a.GetComponentInChildren<Slider>();
 
             applianceText[i].text = appliances[i].kwH.ToString() + " kwH";
-
-            //applianceSlider
-            //This should be somewhere else
-            //appliances[i].TaskCompleted += tm.TaskCompleted;
 
             appliances[i].IsOn += em.AddEnergy;
             appliances[i].IsOff += em.RemoveEnergy;
@@ -85,14 +78,14 @@ public class ApplianceManager : MonoBehaviour
         {
             case ApplianceState.OFF:
                 applianceIndicators[index].color = Color.grey;
-                applianceIndicators[index].sprite = offSymbol;
+
                 applianceSlider[index].gameObject.SetActive(false);
                 applianceText[index].enabled = false;
                 break;
             case ApplianceState.ON:
 
                 applianceIndicators[index].color = Color.yellow;
-                applianceIndicators[index].sprite = onSymbol;
+
                 applianceSlider[index].gameObject.SetActive(true);
 
                 applianceText[index].enabled = true;

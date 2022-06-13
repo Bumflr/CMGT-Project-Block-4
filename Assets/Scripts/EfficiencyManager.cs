@@ -23,8 +23,7 @@ public class EfficiencyManager : MonoBehaviour
 
     public bool motorOn;
 
-    // Start is called before the first frame update
-    public void StartYoShit(int length)
+    public void Starting(int length)
     {
         texts = new Text[length];
         textsIndexes = new Vector2[length];
@@ -133,8 +132,6 @@ public class EfficiencyManager : MonoBehaviour
                 for (int j = 0; j < total.Length; j++)
                 {
                     totalElec += total[j];
-
-                   
                 }
 
                 finalText.text = totalElec.ToString();
