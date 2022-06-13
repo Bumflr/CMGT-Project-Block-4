@@ -25,9 +25,13 @@ public class ApplianceScript : MonoBehaviour
 {
     [HideInInspector] public ApplianceManager applianceManager;
     [HideInInspector] public int index;
-    public float kwH;
+
+    public float[] kwH;
     public float gains;
     public Uses use;
+
+    public int level = 0;
+
 
     public ResourceManager rm;
     //wind objects
@@ -128,8 +132,11 @@ public class ApplianceScript : MonoBehaviour
     {
         if (rm.scrap > 0)
         {
-            kwH = kwH * 0.5f;
+            level++;
+
+            kwH[level] = kwH[level] * 0.5f;
             gains *= 2;
+
             rm.scrap--;
 
         }

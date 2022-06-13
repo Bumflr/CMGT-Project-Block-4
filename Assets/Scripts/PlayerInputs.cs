@@ -32,10 +32,9 @@ public class PlayerInputs : MonoBehaviour
             }
             else
             {
-
                 if (interactedWith)
                 {
-                    popUpPrefab.GetComponent<PopUpPanel>().SetAlphaSmooth(new Color(1, 1, 1, 1));
+                    popUpPrefab.GetComponent<PopUpPanel>().SetAlphaSmooth(new Color(1, 1, 1, 1), upgrade.upgradeModeOn);
                 }
                 else
                 {
@@ -53,7 +52,9 @@ public class PlayerInputs : MonoBehaviour
             if (hit.transform.tag == "Appliance")
             {
                 
-                popUpPrefab.GetComponent<PopUpPanel>().SetData(hit.transform.name, hit.transform.gameObject.GetComponent<ApplianceScript>().kwH, hit.transform.gameObject.GetComponent<ApplianceScript>().gains, hit.transform.gameObject.GetComponent<ApplianceScript>().use);
+                popUpPrefab.GetComponent<PopUpPanel>().SetData(hit.transform.name, hit.transform.gameObject.GetComponent<ApplianceScript>().kwH[hit.transform.gameObject.GetComponent<ApplianceScript>().level],
+                    hit.transform.gameObject.GetComponent<ApplianceScript>().gains, hit.transform.gameObject.GetComponent<ApplianceScript>().use,
+                    hit.transform.gameObject.GetComponent<ApplianceScript>().level, hit.transform.gameObject.GetComponent<ApplianceScript>().kwH[hit.transform.gameObject.GetComponent<ApplianceScript>().level + 1], upgrade.upgradeModeOn);
 
                 interactedWith = true;
             }

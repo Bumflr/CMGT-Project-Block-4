@@ -26,10 +26,13 @@ public class PauseController : MonoBehaviour
 
         if (newGameState == GameState.Paused)
         {
+            Time.timeScale = 0;
             MenuManager.OpenMenu(Menu.PAUSE_SCREEN, MenuManager.CheckMenu());
         }
         else
         {
+            Time.timeScale = 1;
+
         }
 
         GameStateManager.Instance.SetState(newGameState);

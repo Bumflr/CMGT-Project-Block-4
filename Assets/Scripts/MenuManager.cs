@@ -67,7 +67,6 @@ public class MenuManager : MonoBehaviour
 
         pauseMenu = canvas.transform.Find("PauseMenu").gameObject;
         settingsMenu = canvas.transform.Find("SettingsMenu(DEBUG)").gameObject;
-        tasksMenu = canvas.transform.Find("Task Panel").gameObject;
 
         IsInitialised = true;
     }

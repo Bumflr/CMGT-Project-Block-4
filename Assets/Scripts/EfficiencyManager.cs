@@ -54,7 +54,7 @@ public class EfficiencyManager : MonoBehaviour
 
         textsIndexes[(int)INToMyAss.x] = INToMyAss;
 
-        total[(int)INToMyAss.x] = ass.use == Uses.GeneratePower ? -ass.kwH : ass.kwH;
+        total[(int)INToMyAss.x] = ass.use == Uses.GeneratePower ? -ass.kwH[ass.level] : ass.kwH[ass.level];
 
         secondaryTotal[(int)INToMyAss.x] = ass.gains;
 

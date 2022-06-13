@@ -13,19 +13,25 @@ public class GameManager : MonoBehaviour
 
     public ApplianceManager am;
     public ResourceManager rm;
+    public TimeManager tm;
     public EfficiencyManager em;
     public EndOfDayResultsScript eodr;
 
     private void Awake()
     {
         Instance = this;
+
+        am.gm = Instance;
+        rm.gm = Instance;
+        
     }
 
     void Update()
     {
-        //StartCoroutine(SearchForInstance(TimeManager.Instance));
+
     }
 
+  
     /*IEnumerator SearchForTimeInstance(GameObject )
     {
         desiredScript.GetType();

@@ -7,30 +7,37 @@ using UnityEngine.UI;
 public class ResourceManager : MonoBehaviour
 {
     //Holds all of the resources as well as the UI 
+    [HideInInspector] public GameManager gm;
 
-    public static ResourceManager Instance;
     public Text electricityText;
     public Text scrapText;
 
     public GameObject failscreen;
 
-
-
     public float statDepletionRate;
+
+    public float electricity, hunger, cleanliness, boredom, scrap;
+    [HideInInspector] public float oldElectricity, oldHunger, oldCleanliness, oldBoredom, oldScrap;
+    [HideInInspector] public float newElectricity, newHunger, newCleanliness, newBoredom, newTime, newRotation, newStorm;
+
+    public int actionPoints;
+    public float currentStorm;
+
+    [HideInInspector] public int currentActionPoints;
+    [HideInInspector] public Vector3 currentRotation;
+    [HideInInspector] public float maxStorm;
+    [HideInInspector] public float difference;
+    [HideInInspector] public float currentTime; //0 to 1440
+
 
     public Slider hungerSlider;
     public Slider cleanSlider;
     public Slider boredSlider;
 
-    public float electricity, hunger, cleanliness, boredom, scrap;
-    public float oldElectricity, oldHunger, oldCleanliness, oldBoredom, oldScrap;
-    public float newElectricity, newHunger, newCleanliness, newBoredom, newTime, newRotation, newStorm;
-
-
     // Start is called before the first frame update
     void Awake()
     {
-        Instance = this;
+        InitializeValues();
 
         electricity = 100;
         hunger = 100;
@@ -51,11 +58,73 @@ public class ResourceManager : MonoBehaviour
         cleanliness = Mathf.Clamp(cleanliness, 0, 100);
         boredom = Mathf.Clamp(boredom, 0, 100);
 
+        float h = hunger / 100;
+        float b = boredom / 100;
+        float c = cleanliness / 100;
+
+        SetSliderValues(h, c, b);
 
         if (electricity <= 0 || hunger <= 0 || cleanliness <= 0 || boredom <= 0)
         {
             failscreen.SetActive(true);
         }
+    }
+
+    public void InitializeValues()
+    {
+        currentActionPoints = actionPoints;
+        currentRotation = new Vector3(-30, -56, 0);
+
+        newRotation = currentRotation.x;
+        newElectricity = electricity;
+        newBoredom = boredom;
+        newCleanliness = cleanliness;
+        newHunger = hunger;
+        newStorm = currentStorm;
+        maxStorm = currentStorm;
+        difference = 1440 / actionPoints;
+
+        oldElectricity = electricity;
+        oldHunger = hunger;
+        oldBoredom = boredom;
+        oldCleanliness = cleanliness;
+        oldScrap = scrap;
+
+    }
+
+    public void SetUpNextDay()
+    {
+        newTime = currentTime + (1440 / actionPoints);
+
+        newRotation = currentRotation.x + ((1440 / actionPoints) / 4);
+        newElectricity = electricity - gm.em.totalElec;
+
+
+        newBoredom = gm.em.totalBored == 0 ? boredom - statDepletionRate : boredom + gm.em.totalBored;
+        newCleanliness = gm.em.totalClean == 0 ? cleanliness - statDepletionRate : cleanliness + gm.em.totalClean;
+        newHunger = gm.em.totalHungy == 0 ? hunger - statDepletionRate : hunger + gm.em.totalHungy;
+
+        currentActionPoints--;
+
+        newStorm = gm.em.motorOn ? currentStorm - 1 : currentStorm - 2;
+    }
+
+    public void NextDayTransition()
+    {
+        float e = electricity - oldElectricity;
+        float h = hunger - oldHunger;
+        float b = boredom -oldBoredom;
+        float c = cleanliness - oldCleanliness;
+        float s = scrap - oldScrap;
+        float d = currentStorm / actionPoints;
+
+        gm.eodr.GetData(e, h, b, c, s, d, gm.tm.currentDay - 1);
+
+        oldElectricity = electricity;
+        oldHunger = hunger;
+        oldBoredom = boredom;
+        oldCleanliness = cleanliness;
+        oldScrap = scrap;
     }
 
     public void SetSliderValues(float hValue, float cValue, float bValue)

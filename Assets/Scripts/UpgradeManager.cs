@@ -10,7 +10,7 @@ public class UpgradeManager : MonoBehaviour
     public GameObject filter;
 
 
-    public void ButtonModeBaby()
+    public void ButtonPressed()
     {
         upgradeModeOn = !upgradeModeOn;
         filter.GetComponent<Volume>().profile.TryGet(out ColorCurves c);

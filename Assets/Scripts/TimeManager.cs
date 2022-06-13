@@ -15,81 +15,56 @@ public class TimeManager : MonoBehaviour
     public Button nextStepButton;
     public Image clock;
 
-    public int actionPoints;
     public float lerpTime;
     public float timeLimit;
+    public int currentDay;
 
+    [HideInInspector] public ApplianceManager am;
+    [HideInInspector] public ResourceManager rm;
 
-    private float currentTime; //0 to 1440
-    private int currentActionPoints;
-    private int currentDay;
-    public float currentStorm;
-    private Vector3 currentRotation;
-
-    public ApplianceManager am;
-    public ResourceManager rm;
-    public EfficiencyManager em;
-    public EndOfDayResultsScript eodr;
-
-    float newHunger;
-    float newCleanliness;
-    float newBoredom;
-    float newElectricity;
-    float newTime;
-    float newRotation;
-    float newStorm;
-
-    private float maxStorm;
-
-    float difference;
-    static float maxTime = 1440;
+    //public static float maxTime = 1440;
 
     public static TimeManager Instance;
 
-    private bool buttonPressed;
-
-    //This is the Game Over Screen
-    public GameObject FailScreen;
-
     public GameObject lighting;
     private float percentageNextStep = 1;
-
-    [HideInInspector] public bool motorsOff;
+    bool fastForwarding;
 
     private void Awake()
     {
-
         Instance = this;
-
-        currentActionPoints = actionPoints;
-        currentRotation = new Vector3(-30, -56, 0);
-
-        newRotation = currentRotation.x;
-        newElectricity = rm.electricity;
-        newBoredom = rm.boredom;
-        newCleanliness = rm.cleanliness;
-        newHunger = rm.hunger;
-        newStorm = currentStorm;
-        maxStorm = currentStorm;
-        difference = maxTime / actionPoints;
         gameObject.SetActive(true);
-
-        rm.oldElectricity = rm.electricity;
-        rm.oldHunger = rm.hunger;
-        rm.oldBoredom = rm.boredom;
-        rm.oldCleanliness = rm.cleanliness;
-        rm.oldScrap = rm.scrap;
     }
 
     public void NextTurn()
     {
-        buttonPressed = true;
+        if (percentageNextStep >= 0.9999f)
+        {
+            if (fastForwarding)
+            {
+                timeLimit *= 2f;
+            }
+            fastForwarding = false;
+
+            rm.SetUpNextDay();
+        }
+        else if (!fastForwarding)
+        {
+            //Ok so it's still counting so speed it up.
+            timeLimit = timeLimit / 2;
+            fastForwarding = true;
+        }
     }
+
 
     void Update()
     {
         //Holy shit this really has turned to spaghetti code now, making use of so many different scripts which used to have different functions and now not anymore bruuuuuuuuuuuuh
         //ah well
+
+        //ok its better now ig
+        ValuesAffectedByTime();
+
         if (percentageNextStep < 0.9999f)
         {
             nextStepButton.transform.gameObject.GetComponentInChildren<Text>().text = "WAITING..";
@@ -99,84 +74,60 @@ public class TimeManager : MonoBehaviour
             nextStepButton.transform.gameObject.GetComponentInChildren<Text>().text = "NEXT TURN";
         }
 
-        if (buttonPressed && percentageNextStep >= 0.9999f)
+        //Reset the timer after a day passed
+        if (rm.currentTime > 1440)
         {
-            buttonPressed = false;
-            newTime = currentTime + (maxTime / actionPoints);
-            
-            newRotation = currentRotation.x + ((maxTime / actionPoints) / 4);
-            newElectricity = rm.electricity - em.totalElec;
-
-
-            newBoredom = em.totalBored == 0 ? rm.boredom - rm.statDepletionRate : rm.boredom +em.totalBored;
-            newCleanliness = em.totalClean == 0 ? rm.cleanliness - rm.statDepletionRate : rm.cleanliness + em.totalClean;
-            newHunger = em.totalHungy == 0 ? rm.hunger - rm.statDepletionRate : rm.hunger + em.totalHungy;
-
-            //tm.ActionPassed();
-            currentActionPoints--;
-
-            newStorm = em.motorOn ? currentStorm - 1 : currentStorm - 2;
-        }
-        else
-        {
-            buttonPressed = false;
-        }
-
-        if (currentTime > maxTime)
-        {
-            currentTime = 0;
-            newTime = 0 + (maxTime / actionPoints);
-
-            //currentRotation.x = -30;
-            newRotation = -30 + ((maxTime / actionPoints) / 4);
-
-            currentActionPoints = actionPoints;
+            rm.currentTime = 0;
+            rm.newTime = 0 + (1440 / rm.actionPoints);
+            rm.newRotation = -30 + ((1440 / rm.actionPoints) / 4);
+            rm.currentActionPoints = rm.actionPoints;
 
             currentDay++;
             rm.scrap++;
-            NextDayTransition();
+            rm.NextDayTransition();
         }
 
-        currentRotation.x = ValueLerpGet(currentRotation.x, newRotation);
+        //Set the lighing to the time
+        lighting.transform.eulerAngles = rm.currentRotation;
+        //Rotate the clock
+        clock.transform.eulerAngles = new Vector3(0, 0, rm.currentRotation.x - 40);
 
-        lighting.transform.eulerAngles = currentRotation;
-        clock.transform.eulerAngles = new Vector3(0, 0, currentRotation.x - 40);
 
-        currentTime = ValueLerpGet(currentTime, newTime);
-
-        float percentageDay = currentTime / 1440;
-        if (maxStorm != currentStorm) percentageNextStep =  newTime == 0 ? 0 : 1 - ((newTime - currentTime) / difference);
+        float percentageDay = rm.currentTime / 1440;
+        //Ok so if it ain't the actual first turn THEN set percentageNextStep to the difference between the newtime and the old one.
+        //This basically calculates the green bar
+        if (rm.maxStorm != rm.currentStorm) percentageNextStep = rm.newTime == 0 ? 0 : 1 - ((rm.newTime - rm.currentTime) / rm.difference);
 
         am.SetSliderValues(percentageNextStep);
+        SliderTime.value = 1 - (rm.currentStorm / rm.maxStorm);
 
-        rm.electricity = ValueLerpGet(rm.electricity, newElectricity);
-
-        rm.hunger = ValueLerpGet(rm.hunger, newHunger);
-
-        rm.boredom = ValueLerpGet(rm.boredom, newBoredom);
-
-        rm.cleanliness = ValueLerpGet(rm.cleanliness, newCleanliness);
-
-        float h = rm.hunger / 100;
-        float b = rm.boredom / 100;
-        float c = rm.cleanliness / 100;
-        rm.SetSliderValues(h, c, b);
-
-
-        currentStorm = ValueLerpGet(currentStorm, newStorm);
-
-        SliderTime.value = 1 - (currentStorm / maxStorm);
-
-        if (currentStorm <= 0)
+        if (rm.currentStorm <= 0)
         {
             RenderSettings.fogDensity = 0.03f;
         }
 
-    
         counterDayText.text = ("Day: " + currentDay.ToString());
-        turnsText.text = currentActionPoints.ToString();
+        turnsText.text = rm.currentActionPoints.ToString();
     }
 
+    void ValuesAffectedByTime()
+    {
+        rm.currentRotation.x = ValueLerpGet(rm.currentRotation.x, rm.newRotation);
+
+        rm.currentTime = ValueLerpGet(rm.currentTime, rm.newTime);
+
+        rm.electricity = ValueLerpGet(rm.electricity, rm.newElectricity);
+
+        rm.hunger = ValueLerpGet(rm.hunger, rm.newHunger);
+
+        rm.boredom = ValueLerpGet(rm.boredom, rm.newBoredom);
+
+        rm.cleanliness = ValueLerpGet(rm.cleanliness, rm.newCleanliness);
+
+        rm.currentStorm = ValueLerpGet(rm.currentStorm, rm.newStorm);
+    }
+
+    //This needs to go
     public float PercentageGet(TimeSpan localTimeSpan, float days)
     {
         return 1 - (((float)localTimeSpan.Days * 24 * 60) + ((float)localTimeSpan.Hours * 60) + (float)localTimeSpan.Minutes) / (1440 * days);
@@ -189,23 +140,7 @@ public class TimeManager : MonoBehaviour
         return inputValue;
     }
 
-    public void NextDayTransition()
-    {
-        float e = rm.electricity - rm.oldElectricity;
-        float h = rm.hunger - rm.oldHunger;
-        float b = rm.boredom - rm.oldBoredom;
-        float c = rm.cleanliness - rm.oldCleanliness;
-        float s = rm.scrap - rm.oldScrap;
-        float d = currentStorm / actionPoints;
 
-        eodr.GetData(e, h, b, c, s, d, currentDay - 1);
-
-        rm.oldElectricity = rm.electricity;
-        rm.oldHunger = rm.hunger;
-        rm.oldBoredom = rm.boredom;
-        rm.oldCleanliness = rm.cleanliness;
-        rm.oldScrap = rm.scrap;
-    }
 
 }
 

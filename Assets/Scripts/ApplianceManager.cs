@@ -6,6 +6,7 @@ using TMPro;
 
 public class ApplianceManager : MonoBehaviour
 {
+    public GameManager gm;
     //This script holds all of the Appliances
     public GameObject applianceIndicatorPrefab;
 
@@ -14,7 +15,7 @@ public class ApplianceManager : MonoBehaviour
     private TextMeshProUGUI[] applianceText;
     private Slider[] applianceSlider;
 
-    public EfficiencyManager em;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class ApplianceManager : MonoBehaviour
         applianceSlider = new Slider[appliances.Length];
 
 
-        em.Starting(appliances.Length);
+        gm.em.Starting(appliances.Length);
 
         for (int i = 0; i < appliances.Length; i++)
         {
@@ -35,10 +36,10 @@ public class ApplianceManager : MonoBehaviour
             applianceText[i] = a.GetComponentInChildren<TextMeshProUGUI>();
             applianceSlider[i] = a.GetComponentInChildren<Slider>();
 
-            applianceText[i].text = appliances[i].kwH.ToString() + " kwH";
+            applianceText[i].text = appliances[i].kwH[appliances[i].level].ToString() + " kwH";
 
-            appliances[i].IsOn += em.AddEnergy;
-            appliances[i].IsOff += em.RemoveEnergy;
+            appliances[i].IsOn += gm.em.AddEnergy;
+            appliances[i].IsOff += gm.em.RemoveEnergy;
 
             appliances[i].Begin();
         }
