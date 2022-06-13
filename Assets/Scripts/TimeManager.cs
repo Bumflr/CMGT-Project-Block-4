@@ -108,9 +108,9 @@ public class TimeManager : MonoBehaviour
             newElectricity = rm.electricity - em.totalElec;
 
 
-            newBoredom = em.totalBored == 0 ? rm.boredom - rm.depletion : rm.boredom +em.totalBored;
-            newCleanliness = em.totalClean == 0 ? rm.cleanliness - rm.depletion : rm.cleanliness + em.totalClean;
-            newHunger = em.totalHungy == 0 ? rm.hunger - rm.depletion : rm.hunger + em.totalHungy;
+            newBoredom = em.totalBored == 0 ? rm.boredom - rm.statDepletionRate : rm.boredom +em.totalBored;
+            newCleanliness = em.totalClean == 0 ? rm.cleanliness - rm.statDepletionRate : rm.cleanliness + em.totalClean;
+            newHunger = em.totalHungy == 0 ? rm.hunger - rm.statDepletionRate : rm.hunger + em.totalHungy;
 
             //tm.ActionPassed();
             currentActionPoints--;

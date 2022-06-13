@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 2a736311944213343842141fb59a5ad2, type: 2}
 --- !u!1 &75485870
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,8 +528,8 @@ GameObject:
   m_Name: Propellor Motor
   m_TagString: Appliance
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &110692082
 Transform:
@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 599603376}
   - component: {fileID: 599603375}
   - component: {fileID: 599603374}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NAVMESHFLOOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2445,8 +2445,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599603372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 1.65, z: -0.43}
-  m_LocalScale: {x: 0.38, y: 1, z: 1.72}
+  m_LocalPosition: {x: -0.04, y: 1.47, z: -0.43}
+  m_LocalScale: {x: 0.52, y: 1, z: 2.69}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -3657,8 +3657,8 @@ GameObject:
   m_Name: Generator (1)
   m_TagString: Appliance
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &792571001
 Transform:
@@ -4048,7 +4048,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4807,8 +4807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194227}
-  zOffset: -10
-  yOffset: 2
+  Agent: {fileID: 0}
 --- !u!114 &963194232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6586,7 +6585,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7062,7 +7061,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7488,7 +7487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583506867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.49, z: 0}
+  m_LocalPosition: {x: 0, y: 2.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7517,14 +7516,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583506867}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26780f50c2644be458ea198fad96465d, type: 3}
+  m_Script: {fileID: 11500000, guid: a0d387077457f8b4698b44e54e24e301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 963194227}
-  zOffset: 0
-  yOffset: 0
+  WhatCanBeClickedOn:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!195 &1583506874
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7535,11 +7534,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 6
+  m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -8003,7 +8002,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000015258789, y: 5.8}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8182,7 +8181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1764118088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8996,8 +8995,8 @@ GameObject:
   m_Name: Generator
   m_TagString: Appliance
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!114 &1892811779
 MonoBehaviour:
@@ -9698,7 +9697,7 @@ MonoBehaviour:
   cleanliness: 100
   boredom: 100
   scrap: 0
-  depletion: 10
+  statDepletionRate: 0
   hungerSlider: {fileID: 612642936}
   cleanSlider: {fileID: 979792658}
   boredSlider: {fileID: 636324261}
@@ -10446,6 +10445,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Appliance
       objectReference: {fileID: 0}
+    - target: {fileID: 3327219185392015093, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327219185392015093, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3327219185392015094, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
       propertyPath: rm
       value: 
@@ -10549,6 +10556,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Washing Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 5647646640403038115, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647646640403038115, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6152063061299109494, guid: 8bdb10871b8e21443b974ac3b7ba9fd4, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -10581,6 +10596,14 @@ PrefabInstance:
     - target: {fileID: 2622129291874406090, guid: 352913b9c9558664f8a8ebcb0fc40071, type: 3}
       propertyPath: m_Name
       value: Stove
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622129291874406090, guid: 352913b9c9558664f8a8ebcb0fc40071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622129291874406090, guid: 352913b9c9558664f8a8ebcb0fc40071, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5923125120319601540, guid: 352913b9c9558664f8a8ebcb0fc40071, type: 3}
       propertyPath: m_Name
