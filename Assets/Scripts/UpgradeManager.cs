@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public bool upgradeModeOn;
+    [HideInInspector] public bool upgradeModeOn;
     public GameObject filter;
 
 

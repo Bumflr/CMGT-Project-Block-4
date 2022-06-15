@@ -51,8 +51,6 @@ public class ResourceManager : MonoBehaviour
         electricityText.text = electricity.ToString("F2") + " kwH";
         scrapText.text = scrap.ToString("F0");
 
-
-
         electricity = Mathf.Clamp(electricity, 0, 420);
         hunger = Mathf.Clamp(hunger, 0, 100);
         cleanliness = Mathf.Clamp(cleanliness, 0, 100);

@@ -11,7 +11,7 @@ public class TimeManager : MonoBehaviour
 
     public Text counterDayText;
     public Text turnsText;
-    public Slider SliderTime;
+    public GameObject SliderTime;
     public Button nextStepButton;
     public Image clock;
 
@@ -42,7 +42,7 @@ public class TimeManager : MonoBehaviour
         {
             if (fastForwarding)
             {
-                timeLimit *= 2f;
+                timeLimit *= 4f;
             }
             fastForwarding = false;
 
@@ -51,7 +51,7 @@ public class TimeManager : MonoBehaviour
         else if (!fastForwarding)
         {
             //Ok so it's still counting so speed it up.
-            timeLimit = timeLimit / 2;
+            timeLimit = timeLimit / 4;
             fastForwarding = true;
         }
     }
@@ -99,7 +99,11 @@ public class TimeManager : MonoBehaviour
         if (rm.maxStorm != rm.currentStorm) percentageNextStep = rm.newTime == 0 ? 0 : 1 - ((rm.newTime - rm.currentTime) / rm.difference);
 
         am.SetSliderValues(percentageNextStep);
-        SliderTime.value = 1 - (rm.currentStorm / rm.maxStorm);
+
+        float percentageSlider = 1 - (rm.currentStorm / rm.maxStorm);
+        float sugma = -100 + percentageSlider * 100 * 2;
+
+        SliderTime.gameObject.transform.localPosition = new Vector3(sugma, SliderTime.gameObject.transform.localPosition.y, SliderTime.gameObject.transform.localPosition.z);
 
         if (rm.currentStorm <= 0)
         {
@@ -127,7 +131,6 @@ public class TimeManager : MonoBehaviour
         rm.currentStorm = ValueLerpGet(rm.currentStorm, rm.newStorm);
     }
 
-    //This needs to go
     public float PercentageGet(TimeSpan localTimeSpan, float days)
     {
         return 1 - (((float)localTimeSpan.Days * 24 * 60) + ((float)localTimeSpan.Hours * 60) + (float)localTimeSpan.Minutes) / (1440 * days);

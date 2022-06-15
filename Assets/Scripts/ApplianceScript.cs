@@ -133,17 +133,11 @@ public class ApplianceScript : MonoBehaviour
         if (rm.scrap > 0)
         {
             level++;
-
-            kwH[level] = kwH[level] * 0.5f;
-            gains *= 2;
-
             rm.scrap--;
-
         }
     }
 
     private void SetSymbol() { applianceManager.SetSymbol(state, index); }
-
 
     //Ok sometimes this gameobject spawns earlier than the Instance so put it in a while loop until it finds the instance
     IEnumerator SearchForInstance(object desiredScript)

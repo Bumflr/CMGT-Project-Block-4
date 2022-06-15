@@ -25,12 +25,6 @@ public class GameManager : MonoBehaviour
         rm.gm = Instance;
         
     }
-
-    void Update()
-    {
-
-    }
-
   
     /*IEnumerator SearchForTimeInstance(GameObject )
     {

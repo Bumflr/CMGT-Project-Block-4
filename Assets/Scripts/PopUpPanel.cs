@@ -24,9 +24,15 @@ public class PopUpPanel : MonoBehaviour
     public void SetData(string name, float info, float gains, Uses uses, int level, float levelUpInfo, bool upgradeModeOn)
     {
         this.title.text = name;
-        if (upgradeModeOn)
+        if (level == 2)
+        {
+            this.level.text = "Max Lvl";
+            this.levelUpInfo.text = " ";
+        }
+        else if (upgradeModeOn)
         {
             this.level.text = "Lvl " + level.ToString() + " >> Lvl " + (level+1).ToString();
+            this.levelUpInfo.text = ">> " + levelUpInfo.ToString() + " kwH";
         }
         else
             this.level.text = "Lvl " + level.ToString();
@@ -35,7 +41,6 @@ public class PopUpPanel : MonoBehaviour
         this.gains.text = uses == Uses.Cleanliness ? "Provides " + gains + " " + uses.ToString() : "Alleviates " + gains +" " + uses.ToString();
 
 
-        this.levelUpInfo.text = ">> " + levelUpInfo.ToString() + " kwH";
 
     }
 

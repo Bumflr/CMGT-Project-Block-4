@@ -51,10 +51,10 @@ public class PlayerInputs : MonoBehaviour
 
             if (hit.transform.tag == "Appliance")
             {
-                
-                popUpPrefab.GetComponent<PopUpPanel>().SetData(hit.transform.name, hit.transform.gameObject.GetComponent<ApplianceScript>().kwH[hit.transform.gameObject.GetComponent<ApplianceScript>().level],
-                    hit.transform.gameObject.GetComponent<ApplianceScript>().gains, hit.transform.gameObject.GetComponent<ApplianceScript>().use,
-                    hit.transform.gameObject.GetComponent<ApplianceScript>().level, hit.transform.gameObject.GetComponent<ApplianceScript>().kwH[hit.transform.gameObject.GetComponent<ApplianceScript>().level + 1], upgrade.upgradeModeOn);
+                ApplianceScript script = hit.transform.gameObject.GetComponent<ApplianceScript>();
+                popUpPrefab.GetComponent<PopUpPanel>().SetData(hit.transform.name, script.kwH[script.level],
+                    script.gains, script.use,
+                    script.level, script.level == 2 ? script.kwH[script.level] : script.kwH[script.level + 1], upgrade.upgradeModeOn);
 
                 interactedWith = true;
             }
@@ -66,7 +66,7 @@ public class PlayerInputs : MonoBehaviour
             {
                 if (hit.transform.tag == "Appliance")
                 {
-                    if (upgrade.upgradeModeOn)
+                    if (upgrade.upgradeModeOn && hit.transform.GetComponent<ApplianceScript>().level != 2)
                     {
                         hit.transform.GetComponent<ApplianceScript>().UpgradeState();
                     }

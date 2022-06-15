@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class EfficiencyManager : MonoBehaviour
 {
-    public Text[] texts;
+    private Text[] texts;
     public Text finalText;
-    public Vector2[] textsIndexes;
+    private Vector2[] textsIndexes;
     public GameObject textPrefab;
 
     public float yOffset;
