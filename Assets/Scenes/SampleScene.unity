@@ -2726,7 +2726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c704b554a942b489895bd1ccad41ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
+  gm: {fileID: 2033186416}
   applianceIndicatorPrefab: {fileID: 7437832711731349159, guid: 3f00aee445f6d874ab72d372c2224445, type: 3}
   appliances: []
   symbol: {fileID: 21300000, guid: 97ff60b0e401e3a46b673cf07ada6492, type: 3}
@@ -7867,7 +7867,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4b8412de433e0ca4cb322d6bf2229965, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4b8412de433e0ca4cb322d6bf2229965, type: 3}
       propertyPath: m_LocalScale.x
@@ -10941,10 +10941,6 @@ MonoBehaviour:
   cleanliness: 100
   boredom: 100
   scrap: 0
-  statDepletionRate: 0
-  hungerSlider: {fileID: 612642936}
-  cleanSlider: {fileID: 979792658}
-  boredSlider: {fileID: 636324261}
   oldElectricity: 0
   oldHunger: 0
   oldCleanliness: 0
