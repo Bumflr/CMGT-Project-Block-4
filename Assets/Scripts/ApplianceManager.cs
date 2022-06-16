@@ -19,7 +19,7 @@ public class ApplianceManager : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         appliances = FindAppliances();
         applianceIndicators = new Image[appliances.Length];
@@ -53,8 +53,8 @@ public class ApplianceManager : MonoBehaviour
     {
         GameObject[] gameObject = GameObject.FindGameObjectsWithTag("Appliance");
         ApplianceScript[] scripts = new ApplianceScript[gameObject.Length];
-
-        for (int i = 0; i < gameObject.Length; i++)
+        
+        for (int i = 0; i < scripts.Length; i++)
         {
             scripts[i] = gameObject[i].GetComponent<ApplianceScript>();
             scripts[i].index = i;

@@ -1,23 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
     public Camera cam;
-    public float zOffset;
-    public float yOffset;
+    //public float zOffset;
+    //public float yOffset;
 
-    private bool drag;
+    public NavMeshAgent Agent;
 
-    Vector3 proportionalPosition;
-    Vector3 origin;
-    private void Start()
+    //private bool drag;
+
+    //Vector3 proportionalPosition;
+    //Vector3 origin;
+ 
+    void Upadte ()
     {
-        
-    }
+        if (Input.GetMouseButtonDown(0))
+        {
+            //ray variable to be used for agent move position
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-    private void LateUpdate()
+            //If the ray hits
+            if (Physics.Raycast(ray, out hit))
+            {
+                Agent.SetDestination(hit.point);
+            }
+        }
+    }
+    
+    
+    
+    /*private void LateUpdate()
     {
         if (Input.GetMouseButton(0))
         {
@@ -41,7 +56,7 @@ public class Movement : MonoBehaviour
         {
             cam.transform.position = proportionalPosition - origin;
         }
-    }
+    }*/
 
 
     /*private void FixedUpdate()
