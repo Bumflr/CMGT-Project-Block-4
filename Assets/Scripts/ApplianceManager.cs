@@ -14,6 +14,7 @@ public class ApplianceManager : MonoBehaviour
     private Image[] applianceIndicators;
     private TextMeshProUGUI[] applianceText;
     private Slider[] applianceSlider;
+    public Sprite symbol;
 
     
 
@@ -33,6 +34,7 @@ public class ApplianceManager : MonoBehaviour
             var a = Instantiate(applianceIndicatorPrefab, new Vector3(appliances[i].gameObject.transform.position.x + 1, appliances[i].gameObject.transform.position.y + 3, appliances[i].gameObject.transform.position.z), applianceIndicatorPrefab.transform.rotation, this.transform);
 
             applianceIndicators[i] = a.GetComponent<Image>();
+            applianceIndicators[i].sprite = symbol;
             applianceText[i] = a.GetComponentInChildren<TextMeshProUGUI>();
             applianceSlider[i] = a.GetComponentInChildren<Slider>();
 
@@ -93,6 +95,7 @@ public class ApplianceManager : MonoBehaviour
                 break;
             case ApplianceState.NO_POWER:
                 applianceIndicators[index].color = Color.black;
+                
                 applianceText[index].enabled = true;
                 break;
         }
