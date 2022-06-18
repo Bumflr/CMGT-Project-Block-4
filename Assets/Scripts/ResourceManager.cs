@@ -13,6 +13,7 @@ public class ResourceManager : MonoBehaviour
     public Text scrapText;
 
     public GameObject failscreen;
+    public Text failScreenText;
 
     public float statDepletionRate;
 
@@ -64,6 +65,25 @@ public class ResourceManager : MonoBehaviour
 
         if (electricity <= 0 || hunger <= 0 || cleanliness <= 0 || boredom <= 0)
         {
+            if (electricity <= 0)
+            {
+                failScreenText.text = "Ran out of electricity!";
+            }
+            else if (hunger <= 0)
+            {
+                failScreenText.text = "Starved to death!";
+
+            }
+            else if (cleanliness <= 0)
+            {
+                failScreenText.text = "You stanky!";
+
+            }
+            else if (boredom <= 0)
+            {
+                failScreenText.text = "Died of cringe!";
+            }
+
             failscreen.SetActive(true);
         }
     }

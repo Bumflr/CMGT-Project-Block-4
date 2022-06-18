@@ -14,6 +14,7 @@ public class TimeManager : MonoBehaviour
     public GameObject SliderTime;
     public Button nextStepButton;
     public Image clock;
+    public Image spinningHourglass;
 
     public float lerpTime;
     public float timeLimit;
@@ -67,11 +68,11 @@ public class TimeManager : MonoBehaviour
 
         if (percentageNextStep < 0.9999f)
         {
-            nextStepButton.transform.gameObject.GetComponentInChildren<Text>().text = "WAITING..";
+            spinningHourglass.enabled = true;
         }
         else
         {
-            nextStepButton.transform.gameObject.GetComponentInChildren<Text>().text = "NEXT TURN";
+            spinningHourglass.enabled = false;
         }
 
         //Reset the timer after a day passed
@@ -91,6 +92,8 @@ public class TimeManager : MonoBehaviour
         lighting.transform.eulerAngles = rm.currentRotation;
         //Rotate the clock
         clock.transform.eulerAngles = new Vector3(0, 0, rm.currentRotation.x - 40);
+
+        spinningHourglass.transform.eulerAngles = new Vector3(0, 0, (rm.currentRotation.x * rm.actionPoints) - 39);
 
 
         float percentageDay = rm.currentTime / 1440;
