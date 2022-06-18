@@ -16,7 +16,7 @@ public class ApplianceManager : MonoBehaviour
     private Slider[] applianceSlider;
     public Sprite symbol;
 
-    
+    private float[] savedApplianceSlider;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,7 +25,7 @@ public class ApplianceManager : MonoBehaviour
         applianceIndicators = new Image[appliances.Length];
         applianceText = new TextMeshProUGUI[appliances.Length];
         applianceSlider = new Slider[appliances.Length];
-
+        savedApplianceSlider = new float[appliances.Length];
 
         gm.em.Starting(appliances.Length);
 
@@ -37,6 +37,7 @@ public class ApplianceManager : MonoBehaviour
             applianceIndicators[i].sprite = symbol;
             applianceText[i] = a.GetComponentInChildren<TextMeshProUGUI>();
             applianceSlider[i] = a.GetComponentInChildren<Slider>();
+            applianceSlider[i].value = 1;
 
             applianceText[i].text = appliances[i].kwH[appliances[i].level].ToString() + " kwH";
 
@@ -70,7 +71,12 @@ public class ApplianceManager : MonoBehaviour
         {
             if (appliances[i].state == ApplianceState.ON)
             {
-                applianceSlider[i].value = value;
+                if (gm.tm.percentageNextStep > 0.9999f)
+                {
+                    savedApplianceSlider[i] = applianceSlider[i].value;
+                }
+
+                applianceSlider[i].value = savedApplianceSlider[i] - value;
             }
         }
     }

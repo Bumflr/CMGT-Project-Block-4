@@ -20,15 +20,16 @@ public class TimeManager : MonoBehaviour
     public float timeLimit;
     public int currentDay;
 
-    [HideInInspector] public ApplianceManager am;
     [HideInInspector] public ResourceManager rm;
+    public ApplianceManager am;
+    public GameManager gm;
 
     //public static float maxTime = 1440;
 
     public static TimeManager Instance;
 
     public GameObject lighting;
-    private float percentageNextStep = 1;
+    public float percentageNextStep = 1;
     bool fastForwarding;
 
     private void Awake()
@@ -88,6 +89,8 @@ public class TimeManager : MonoBehaviour
             rm.NextDayTransition();
         }
 
+
+
         //Set the lighing to the time
         lighting.transform.eulerAngles = rm.currentRotation;
         //Rotate the clock
@@ -101,7 +104,7 @@ public class TimeManager : MonoBehaviour
         //This basically calculates the green bar
         if (rm.maxStorm != rm.currentStorm) percentageNextStep = rm.newTime == 0 ? 0 : 1 - ((rm.newTime - rm.currentTime) / rm.difference);
 
-        am.SetSliderValues(percentageNextStep);
+        /*gm.*/am.SetSliderValues((gm.tm.percentageNextStep / 5));
 
         float percentageSlider = 1 - (rm.currentStorm / rm.maxStorm);
         float sugma = -100 + percentageSlider * 100 * 2;
@@ -132,6 +135,8 @@ public class TimeManager : MonoBehaviour
         rm.cleanliness = ValueLerpGet(rm.cleanliness, rm.newCleanliness);
 
         rm.currentStorm = ValueLerpGet(rm.currentStorm, rm.newStorm);
+
+
     }
 
     public float PercentageGet(TimeSpan localTimeSpan, float days)

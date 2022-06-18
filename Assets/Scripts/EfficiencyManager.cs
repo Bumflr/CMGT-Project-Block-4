@@ -96,8 +96,6 @@ public class EfficiencyManager : MonoBehaviour
             finalText.color = Color.green;
         }
 
-
-
     }
 
     public void RemoveEnergy(ApplianceScript ass)

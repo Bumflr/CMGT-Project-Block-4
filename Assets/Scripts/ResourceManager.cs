@@ -125,6 +125,7 @@ public class ResourceManager : MonoBehaviour
         currentActionPoints--;
 
         newStorm = gm.em.motorOn ? currentStorm - 1 : currentStorm - 2;
+
     }
 
     public void NextDayTransition()
