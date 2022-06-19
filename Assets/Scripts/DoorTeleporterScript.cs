@@ -17,7 +17,6 @@ public class DoorTeleporterScript : MonoBehaviour
     private bool playerIsOverlapping = false;
     void Update()
     {
-        Debug.Log(checker);
         /*Debug.Log(playerIsOverlapping);
         if (playerIsOverlapping)
         {
