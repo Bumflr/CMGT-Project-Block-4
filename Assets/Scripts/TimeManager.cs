@@ -104,7 +104,7 @@ public class TimeManager : MonoBehaviour
         //This basically calculates the green bar
         if (rm.maxStorm != rm.currentStorm) percentageNextStep = rm.newTime == 0 ? 0 : 1 - ((rm.newTime - rm.currentTime) / rm.difference);
 
-        /*gm.*/am.SetSliderValues((gm.tm.percentageNextStep / 5));
+        gm.am.SetSliderValues((gm.tm.percentageNextStep / 5));
 
         float percentageSlider = 1 - (rm.currentStorm / rm.maxStorm);
         float sugma = -100 + percentageSlider * 100 * 2;

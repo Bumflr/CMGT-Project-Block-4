@@ -30,6 +30,7 @@ public class ApplianceScript : MonoBehaviour
     public float gains;
     public Uses use;
 
+    public float health = 100;
     public int level = 0;
 
 

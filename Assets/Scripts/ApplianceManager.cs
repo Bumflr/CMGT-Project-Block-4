@@ -22,6 +22,7 @@ public class ApplianceManager : MonoBehaviour
     void Awake()
     {
         appliances = FindAppliances();
+
         applianceIndicators = new Image[appliances.Length];
         applianceText = new TextMeshProUGUI[appliances.Length];
         applianceSlider = new Slider[appliances.Length];
@@ -75,8 +76,12 @@ public class ApplianceManager : MonoBehaviour
                 {
                     savedApplianceSlider[i] = applianceSlider[i].value;
                 }
+                else
+                {
+                    applianceSlider[i].value = savedApplianceSlider[i] - value;
+                }
 
-                applianceSlider[i].value = savedApplianceSlider[i] - value;
+                appliances[i].health = (applianceSlider[i].value * 100);
             }
         }
     }
