@@ -8,6 +8,7 @@ public class NewPlayerMovement : MonoBehaviour
     public LayerMask WhatCanBeClickedOn;
     private NavMeshAgent myAgent;
     public RaycastHit hitInfo;
+
     void Start()
     {
         myAgent = GetComponent <NavMeshAgent>();
@@ -24,6 +25,8 @@ public class NewPlayerMovement : MonoBehaviour
                 myAgent.SetDestination(hitInfo.point);
             }
         }
+        //myAgent.SetDestination(GameObject.Find("ColliderPlane").GetComponent<DoorTeleporterScript>().currentPosition);
+
         if (GameObject.Find("ColliderPlane").GetComponent<DoorTeleporterScript>().checker == true)
         {
             myAgent.SetDestination(GameObject.Find("ColliderPlane").GetComponent<DoorTeleporterScript>().currentPosition);

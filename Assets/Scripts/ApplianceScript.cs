@@ -30,6 +30,7 @@ public class ApplianceScript : MonoBehaviour
     public float gains;
     public Uses use;
 
+    public float health = 100;
     public int level = 0;
 
 
@@ -120,8 +121,9 @@ public class ApplianceScript : MonoBehaviour
                 state = ApplianceState.OFF;
                 IsOff?.Invoke(this);
                 break;
+
             case ApplianceState.NO_POWER:
-                state = ApplianceState.OFF;
+                IsOff?.Invoke(this);
                 break;
         }
 
@@ -137,7 +139,21 @@ public class ApplianceScript : MonoBehaviour
         }
     }
 
-    private void SetSymbol() { applianceManager.SetSymbol(state, index); }
+    public void FixAppliance()
+    {
+        if (rm.scrap > 0)
+        {
+            health = 100;
+            rm.scrap--;
+
+            state = ApplianceState.OFF;
+            IsOff?.Invoke(this);
+
+            SetSymbol();
+        }
+    }
+
+    public void SetSymbol() { applianceManager.SetSymbol(state, index); }
 
     //Ok sometimes this gameobject spawns earlier than the Instance so put it in a while loop until it finds the instance
     IEnumerator SearchForInstance(object desiredScript)

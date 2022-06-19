@@ -389,6 +389,7 @@ MonoBehaviour:
   kwH: []
   gains: 10
   use: 0
+  health: 100
   level: 0
   rm: {fileID: 0}
   state: 0
@@ -799,7 +800,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110692081}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -351.03802, y: -230.352, z: -5.85}
+  m_LocalPosition: {x: -351.03802, y: -230.352, z: -3.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1564533237}
@@ -839,6 +840,7 @@ MonoBehaviour:
   - 0
   gains: 0
   use: 4
+  health: 100
   level: 0
   rm: {fileID: 0}
   state: 0
@@ -970,6 +972,7 @@ MonoBehaviour:
   kwH: []
   gains: 0
   use: 0
+  health: 100
   level: 1
   rm: {fileID: 0}
   state: 0
@@ -5008,6 +5011,7 @@ MonoBehaviour:
   - 7
   gains: 0
   use: 0
+  health: 100
   level: 0
   rm: {fileID: 0}
   state: 0
@@ -5080,6 +5084,7 @@ MonoBehaviour:
   - 10
   gains: 0
   use: 3
+  health: 100
   level: 0
   rm: {fileID: 2033186419}
   state: 0
@@ -7147,6 +7152,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094301725}
   m_CullTransparentMesh: 1
+--- !u!1 &1107822548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6289362717759009304, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
+  m_PrefabInstance: {fileID: 128998882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1107822554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107822548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c114bb55abe284799c41eed6936b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applianceManager: {fileID: 0}
+  index: 0
+  kwH: []
+  gains: 0
+  use: 0
+  health: 100
+  level: 0
+  rm: {fileID: 0}
+  state: 0
 --- !u!1 &1120410967
 GameObject:
   m_ObjectHideFlags: 0
@@ -9956,6 +9987,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Appliance
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f05658cd5e663b54bb1a5130dbf94f86, type: 3}
+      propertyPath: m_TagString
+      value: Appliance
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f05658cd5e663b54bb1a5130dbf94f86, type: 3}
 --- !u!1 &1673935400 stripped
@@ -9996,6 +10031,7 @@ MonoBehaviour:
   - 10
   gains: 10
   use: 1
+  health: 100
   level: 0
   rm: {fileID: 2033186419}
   state: 0
@@ -11253,6 +11289,7 @@ MonoBehaviour:
   - 10
   gains: 0
   use: 3
+  health: 100
   level: 0
   rm: {fileID: 2033186419}
   state: 0
@@ -12225,6 +12262,7 @@ MonoBehaviour:
   - 578
   gains: 4
   use: 2
+  health: 100
   level: 0
   rm: {fileID: 2033186419}
   state: 0
@@ -12922,7 +12960,7 @@ PrefabInstance:
     - target: {fileID: 3327219185392015088, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 5a0b694ee9bab0946b2b7a30e9616752, type: 3}
+      objectReference: {fileID: -876546973899608171, guid: d1066cbff2f1fab42a4c359280c31352, type: 3}
     - target: {fileID: 3327219185392015090, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
       propertyPath: m_RootOrder
       value: 3

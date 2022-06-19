@@ -111,10 +111,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applianceManager: {fileID: 0}
   index: 0
-  kwH: 2
+  kwH: []
+  gains: 0
   use: 0
+  level: 0
+  rm: {fileID: 0}
   state: 1
-  rb: {fileID: 0}
 --- !u!114 &7112030149412369481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,11 +124,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3327219185392015093}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a044e6e6715aa4f4cb7320c2d84dccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  outlineScaleFactor: -1.1
-  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  flipIfModelFucked: 0

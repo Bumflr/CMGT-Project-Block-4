@@ -68,12 +68,20 @@ public class PlayerInputs : MonoBehaviour
                 {
                     if (upgrade.upgradeModeOn && hit.transform.GetComponent<ApplianceScript>().level != 2)
                     {
-                        hit.transform.GetComponent<ApplianceScript>().UpgradeState();
+                        if (hit.transform.GetComponent<ApplianceScript>().state != ApplianceState.NO_POWER)
+                        {
+                            hit.transform.GetComponent<ApplianceScript>().UpgradeState();
+                        }
+                        else
+                        {
+                            hit.transform.GetComponent<ApplianceScript>().FixAppliance();
+                        }
                     }
-                    else
+                    else if (hit.transform.GetComponent<ApplianceScript>().state != ApplianceState.NO_POWER)
                     {
                         hit.transform.GetComponent<ApplianceScript>().RotateState();
                     }
+
                     return;
                 }
             }
