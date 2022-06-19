@@ -14,7 +14,7 @@ public class DoorTeleporterScript : MonoBehaviour
     public bool checker = false;
 
 
-    private bool playerIsOverlapping = false;
+    //private bool playerIsOverlapping = false;
     void Update()
     {
         /*Debug.Log(playerIsOverlapping);
@@ -46,7 +46,7 @@ public class DoorTeleporterScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    /*void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -60,5 +60,5 @@ public class DoorTeleporterScript : MonoBehaviour
         {
             playerIsOverlapping = false;
         }
-    }
+    }*/
 }
