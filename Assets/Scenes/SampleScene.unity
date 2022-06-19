@@ -1046,6 +1046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fridge5
       objectReference: {fileID: 0}
+    - target: {fileID: 8916540292238579605, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
+      propertyPath: flipIfModelFucked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8950714431411383093, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2876,7 +2880,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 2033186416}
   applianceIndicatorPrefab: {fileID: 7437832711731349159, guid: 3f00aee445f6d874ab72d372c2224445, type: 3}
-  appliances: []
+  appliances:
+  - {fileID: 76315049}
+  - {fileID: 2071776456}
+  - {fileID: 789933495}
+  - {fileID: 1673935402}
   symbol: {fileID: 21300000, guid: 97ff60b0e401e3a46b673cf07ada6492, type: 3}
 --- !u!114 &443852144
 MonoBehaviour:
@@ -3064,27 +3072,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97402a4a6a5ef52408b9700ce12a53e2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97402a4a6a5ef52408b9700ce12a53e2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97402a4a6a5ef52408b9700ce12a53e2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97402a4a6a5ef52408b9700ce12a53e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.97
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97402a4a6a5ef52408b9700ce12a53e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2200012
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97402a4a6a5ef52408b9700ce12a53e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.25
+      value: -11.17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97402a4a6a5ef52408b9700ce12a53e2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6382,8 +6390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a044e6e6715aa4f4cb7320c2d84dccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMaterial: {fileID: 0}
-  flipIfModelFucked: 0
+  outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
+  flipIfModelFucked: 1
 --- !u!65 &992291767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6422,7 +6430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a22bd9ce99f173e48988487f555de058, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: -3.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a22bd9ce99f173e48988487f555de058, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6430,7 +6438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a22bd9ce99f173e48988487f555de058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.7
+      value: 27.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a22bd9ce99f173e48988487f555de058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8264,6 +8272,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397666878}
   m_CullTransparentMesh: 1
+--- !u!1 &1423605886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fe70c8d8bd653c74ea36949df49739af, type: 3}
+  m_PrefabInstance: {fileID: 1785856693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1423605890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423605886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27723616, y: 0.18706806, z: 0.47171667}
+  m_Center: {x: 0.0014102384, y: -0.013162277, z: 0.013977214}
+--- !u!114 &1423605891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423605886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a044e6e6715aa4f4cb7320c2d84dccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
+  flipIfModelFucked: 1
 --- !u!1 &1447274606
 GameObject:
   m_ObjectHideFlags: 0
@@ -10596,25 +10636,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802153612}
   m_CullTransparentMesh: 1
---- !u!1 &1844119393 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 698b3aa771d4e43488b85c3e86677ebd, type: 3}
-  m_PrefabInstance: {fileID: 1743221208}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1844119395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844119393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a044e6e6715aa4f4cb7320c2d84dccb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
 --- !u!1001 &1844884633
 PrefabInstance:
   m_ObjectHideFlags: 0
