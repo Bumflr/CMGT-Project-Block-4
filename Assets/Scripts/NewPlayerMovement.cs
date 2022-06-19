@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class NewPlayerMovement : MonoBehaviour 
 {
     public LayerMask WhatCanBeClickedOn;
-
     private NavMeshAgent myAgent;
+    public RaycastHit hitInfo;
     void Start()
     {
         myAgent = GetComponent <NavMeshAgent>();
@@ -18,12 +18,16 @@ public class NewPlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Ray myRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInfo;
 
             if (Physics.Raycast (myRay, out hitInfo, 100, WhatCanBeClickedOn))
             {
                 myAgent.SetDestination(hitInfo.point);
             }
+        }
+        if (GameObject.Find("ColliderPlane").GetComponent<DoorTeleporterScript>().checker == true)
+        {
+            myAgent.SetDestination(GameObject.Find("ColliderPlane").GetComponent<DoorTeleporterScript>().currentPosition);
+            GameObject.Find("ColliderPlane").GetComponent<DoorTeleporterScript>().checker = false;
         }
     }
 }
