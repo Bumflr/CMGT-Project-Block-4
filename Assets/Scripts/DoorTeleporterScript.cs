@@ -36,6 +36,7 @@ public class DoorTeleporterScript : MonoBehaviour
             }
         }*/
     }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")

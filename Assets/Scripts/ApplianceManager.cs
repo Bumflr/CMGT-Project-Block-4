@@ -81,7 +81,27 @@ public class ApplianceManager : MonoBehaviour
                     applianceSlider[i].value = savedApplianceSlider[i] - value;
                 }
 
+                if (appliances[i].health <= 0)
+                {
+                    appliances[i].state = ApplianceState.NO_POWER;
+                    appliances[i].SetSymbol();
+                }
+
                 appliances[i].health = (applianceSlider[i].value * 100);
+            }
+
+            if (appliances[i].state == ApplianceState.OFF)
+            {
+                /*if (gm.tm.percentageNextStep > 0.9999f)
+                {
+                    savedApplianceSlider[i] = applianceSlider[i].value;
+                }
+                else
+                {
+                    applianceSlider[i].value = savedApplianceSlider[i] - value;
+                }*/
+
+                applianceSlider[i].value = appliances[i].health / 100;
             }
         }
     }
@@ -93,7 +113,9 @@ public class ApplianceManager : MonoBehaviour
             case ApplianceState.OFF:
                 applianceIndicators[index].color = Color.grey;
 
-                applianceSlider[index].gameObject.SetActive(false);
+                //applianceSlider[index].gameObject.SetActive(false);
+                applianceSlider[index].gameObject.SetActive(true);
+
                 applianceText[index].enabled = false;
                 break;
             case ApplianceState.ON:
@@ -105,8 +127,10 @@ public class ApplianceManager : MonoBehaviour
                 applianceText[index].enabled = true;
                 break;
             case ApplianceState.NO_POWER:
+
                 applianceIndicators[index].color = Color.black;
-                
+
+                applianceSlider[index].gameObject.SetActive(true);
                 applianceText[index].enabled = true;
                 break;
         }

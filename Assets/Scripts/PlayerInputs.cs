@@ -66,13 +66,17 @@ public class PlayerInputs : MonoBehaviour
             {
                 if (hit.transform.tag == "Appliance")
                 {
-                    if (upgrade.upgradeModeOn && hit.transform.GetComponent<ApplianceScript>().level != 2)
+                    if (upgrade.upgradeModeOn && hit.transform.GetComponent<ApplianceScript>().state != ApplianceState.NO_POWER && hit.transform.GetComponent<ApplianceScript>().level != 2)
                     {
                         hit.transform.GetComponent<ApplianceScript>().UpgradeState();
                     }
-                    else
+                    else if (hit.transform.GetComponent<ApplianceScript>().state != ApplianceState.NO_POWER)
                     {
                         hit.transform.GetComponent<ApplianceScript>().RotateState();
+                    }
+                    else
+                    {
+                        hit.transform.GetComponent<ApplianceScript>().FixAppliance();
                     }
                     return;
                 }
