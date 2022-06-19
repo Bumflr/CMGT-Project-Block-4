@@ -315,7 +315,7 @@ MonoBehaviour:
   player: {fileID: 1583506871}
   reciever: {fileID: 0}
   PlayerAgent: {fileID: 1583506874}
-  dest: {x: 0, y: 0, z: 0}
+  dest: {x: 0.58, y: 1.48, z: 11.75}
   currentPosition: {x: 0, y: 0, z: 0}
   checker: 0
 --- !u!65 &34365854
@@ -996,11 +996,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8950714431411383093, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8950714431411383093, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.43
+      value: -2.117
       objectReference: {fileID: 0}
     - target: {fileID: 8950714431411383093, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1008,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8950714431411383093, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.79
+      value: 9.01
       objectReference: {fileID: 0}
     - target: {fileID: 8950714431411383093, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2814,7 +2814,7 @@ RectTransform:
   m_Children:
   - {fileID: 746932679}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5828,7 +5828,6 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194232}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
@@ -5902,20 +5901,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26780f50c2644be458ea198fad96465d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 963194227}
-  Agent: {fileID: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6208,15 +6193,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3cbf04702ceebd40afa69728b0a8fd1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3cbf04702ceebd40afa69728b0a8fd1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.83
+      value: 4.758
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3cbf04702ceebd40afa69728b0a8fd1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.25254
+      value: 32.46
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3cbf04702ceebd40afa69728b0a8fd1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6550,7 +6535,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fe70c8d8bd653c74ea36949df49739af, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fe70c8d8bd653c74ea36949df49739af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7236,7 +7221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238493454}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.88, y: 2.76, z: 26.739}
+  m_LocalPosition: {x: -3.13, y: 4.15, z: 32.44}
   m_LocalScale: {x: 0.66, y: 0.14, z: 1.68}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10963,10 +10948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663923d13ef61be4e897c9c459f7233f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  reciever: {fileID: 1583506871}
+  player: {fileID: 1583506871}
+  reciever: {fileID: 0}
   PlayerAgent: {fileID: 1583506874}
-  dest: {x: 0, y: 0, z: 0}
+  dest: {x: 0.58, y: 2.22, z: 18}
   currentPosition: {x: 0, y: 0, z: 0}
   checker: 0
 --- !u!23 &1986058664
