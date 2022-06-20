@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EntireGameManager : MonoBehaviour
 {
@@ -10,20 +11,9 @@ public class EntireGameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void New_Game()
     {
-
-    }
-
-    public void Load_Game()
-    {
-
+        SceneManager.LoadScene(1);
     }
 
     public void Exit_Game()

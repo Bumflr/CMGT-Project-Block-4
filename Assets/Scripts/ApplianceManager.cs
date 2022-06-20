@@ -32,7 +32,7 @@ public class ApplianceManager : MonoBehaviour
 
         for (int i = 0; i < appliances.Length; i++)
         {
-            var a = Instantiate(applianceIndicatorPrefab, new Vector3(appliances[i].gameObject.transform.position.x + 1, appliances[i].gameObject.transform.position.y + 3, appliances[i].gameObject.transform.position.z), applianceIndicatorPrefab.transform.rotation, this.transform);
+            var a = Instantiate(applianceIndicatorPrefab, new Vector3(appliances[i].gameObject.transform.position.x + 4, appliances[i].gameObject.transform.position.y + 3, appliances[i].gameObject.transform.position.z), applianceIndicatorPrefab.transform.rotation, this.transform);
 
             applianceIndicators[i] = a.GetComponent<Image>();
             applianceIndicators[i].sprite = symbol;
@@ -45,7 +45,7 @@ public class ApplianceManager : MonoBehaviour
             appliances[i].IsOn += gm.em.AddEnergy;
             appliances[i].IsOff += gm.em.RemoveEnergy;
 
-            savedApplianceSlider[i] = applianceSlider[i].value;
+
             appliances[i].Begin();
         }
 
@@ -62,6 +62,7 @@ public class ApplianceManager : MonoBehaviour
             scripts[i] = gameObject[i].GetComponent<ApplianceScript>();
             scripts[i].index = i;
             scripts[i].applianceManager = this;
+            scripts[i].rm = gm.rm;
         }
 
         return scripts;
