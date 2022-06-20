@@ -15,6 +15,8 @@ public class TimeManager : MonoBehaviour
     public Button nextStepButton;
     public Image clock;
     public Image spinningHourglass;
+    public GameObject blackScreen;
+    public GameObject stormCube;
 
     public float lerpTime;
     public float timeLimit;
@@ -70,10 +72,12 @@ public class TimeManager : MonoBehaviour
         if (percentageNextStep < 0.9999f)
         {
             spinningHourglass.enabled = true;
+            blackScreen.SetActive(true);
         }
         else
         {
             spinningHourglass.enabled = false;
+            blackScreen.SetActive(false);
         }
 
         //Reset the timer after a day passed
@@ -114,6 +118,7 @@ public class TimeManager : MonoBehaviour
         if (rm.currentStorm <= 0)
         {
             RenderSettings.fogDensity = 0.03f;
+            stormCube.SetActive(true);
         }
 
         counterDayText.text = ("Day: " + currentDay.ToString());

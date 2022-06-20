@@ -409,7 +409,8 @@ MonoBehaviour:
   - 0
   - 0
   gains: 0
-  use: 4
+  use: 3
+  health: 100
   level: 0
   rm: {fileID: 0}
   state: 0
