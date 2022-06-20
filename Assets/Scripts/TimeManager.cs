@@ -17,7 +17,6 @@ public class TimeManager : MonoBehaviour
 
     public Image spinningHourglass;
     public GameObject blackScreen;
-    public GameObject stormCube;
 
     public float lerpTime;
     public float timeLimit;
@@ -116,11 +115,6 @@ public class TimeManager : MonoBehaviour
 
         SliderTime.gameObject.transform.localPosition = new Vector3(sugma, SliderTime.gameObject.transform.localPosition.y, SliderTime.gameObject.transform.localPosition.z);
 
-        if (rm.currentStorm <= 0)
-        {
-            RenderSettings.fogDensity = 0.03f;
-            stormCube.SetActive(true);
-        }
 
         counterDayText.text = ("Day: " + currentDay.ToString());
         turnsText.text = rm.currentActionPoints.ToString();

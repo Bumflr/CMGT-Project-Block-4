@@ -29,6 +29,7 @@ public class ResourceManager : MonoBehaviour
     [HideInInspector] public float maxStorm;
     [HideInInspector] public float difference;
     [HideInInspector] public float currentTime; //0 to 1440
+    public GameObject stormCube;
 
 
     public Slider hungerSlider;
@@ -63,6 +64,20 @@ public class ResourceManager : MonoBehaviour
 
         SetSliderValues(h, c, b);
 
+
+        if (currentStorm <= 0)
+        {
+            failScreenText.text = "The storm has hit...";
+
+            failscreen.SetActive(true);
+        }
+
+        if (currentStorm <= 5)
+        {
+            RenderSettings.fogDensity = 0.03f;
+            stormCube.SetActive(true);
+        }
+
         if (electricity <= 0 || hunger <= 0 || cleanliness <= 0 || boredom <= 0)
         {
             if (electricity <= 0)
@@ -76,12 +91,12 @@ public class ResourceManager : MonoBehaviour
             }
             else if (cleanliness <= 0)
             {
-                failScreenText.text = "You stanky!";
+                failScreenText.text = "Died of stinkyness!";
 
             }
             else if (boredom <= 0)
             {
-                failScreenText.text = "Died of cringe!";
+                failScreenText.text = "Died of boredom!";
             }
 
             failscreen.SetActive(true);
@@ -124,7 +139,7 @@ public class ResourceManager : MonoBehaviour
 
         currentActionPoints--;
 
-        newStorm = gm.em.motorOn ? currentStorm - 1 : currentStorm - 2;
+        newStorm = gm.em.motorOn ? currentStorm + 1 : currentStorm - 1;
 
     }
 

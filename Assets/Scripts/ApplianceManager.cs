@@ -32,7 +32,7 @@ public class ApplianceManager : MonoBehaviour
 
         for (int i = 0; i < appliances.Length; i++)
         {
-            var a = Instantiate(applianceIndicatorPrefab, new Vector3(appliances[i].gameObject.transform.position.x + 6, appliances[i].gameObject.transform.position.y + 3, appliances[i].gameObject.transform.position.z), applianceIndicatorPrefab.transform.rotation, this.transform);
+            var a = Instantiate(applianceIndicatorPrefab, new Vector3(appliances[i].gameObject.transform.position.x , appliances[i].gameObject.transform.position.y + 3, appliances[i].gameObject.transform.position.z), applianceIndicatorPrefab.transform.rotation, this.transform);
 
             applianceIndicators[i] = a.GetComponent<Image>();
             applianceIndicators[i].sprite = symbol;

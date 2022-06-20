@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuControls : MonoBehaviour
 {
@@ -32,9 +33,13 @@ public class MenuControls : MonoBehaviour
 
     }
 
-    public void OnClick_Loading()
+    public void OnClick_Quitting()
     {
+        GameStateManager.Instance.SetState(GameState.Gameplay);
 
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene(0);
     }
 
     public void OnClick_Efficiency()
