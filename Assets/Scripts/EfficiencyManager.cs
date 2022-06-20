@@ -139,6 +139,19 @@ public class EfficiencyManager : MonoBehaviour
                 break;
             }
         }
+
+        float bruh = -totalElec;
+
+        if (totalElec >= 0)
+        {
+            finalText.text = "- " + totalElec.ToString();
+            finalText.color = Color.red;
+        }
+        else
+        {
+            finalText.text = "+ " + bruh.ToString();
+            finalText.color = Color.green;
+        }
     }
 
     private int AssignInt()
