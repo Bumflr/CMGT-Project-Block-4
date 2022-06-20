@@ -39,6 +39,7 @@ public class ApplianceManager : MonoBehaviour
             applianceText[i] = a.GetComponentInChildren<TextMeshProUGUI>();
             applianceSlider[i] = a.GetComponentInChildren<Slider>();
             applianceSlider[i].value = 1;
+            applianceSlider[i].gameObject.SetActive(false);
 
             applianceText[i].text = appliances[i].kwH[appliances[i].level].ToString() + " kwH";
 
@@ -72,6 +73,15 @@ public class ApplianceManager : MonoBehaviour
     {
         for (int i = 0; i < applianceSlider.Length; i++)
         {
+            if (appliances[i].health > 99)
+            {
+                applianceSlider[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                applianceSlider[i].gameObject.SetActive(true);
+            }
+
             if (appliances[i].state == ApplianceState.ON)
             {
                 if (gm.tm.percentageNextStep > 0.9999f)
@@ -91,6 +101,7 @@ public class ApplianceManager : MonoBehaviour
 
                 appliances[i].health = (applianceSlider[i].value * 100);
             }
+
 
             /*if (appliances[i].state == ApplianceState.OFF)
             {

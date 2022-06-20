@@ -33,6 +33,7 @@ public class ApplianceScript : MonoBehaviour
     public float health = 100;
     public int level = 0;
 
+    public bool playsSound;
 
     public ResourceManager rm;
     //wind objects
@@ -54,6 +55,7 @@ public class ApplianceScript : MonoBehaviour
     {
         state = ApplianceState.OFF;
         SetSymbol();
+
         //Is like a just calling a function but a bit different
         //StartCoroutine(SearchForInstance());
     }
@@ -115,14 +117,29 @@ public class ApplianceScript : MonoBehaviour
         {
             case ApplianceState.OFF:
                 state = ApplianceState.ON;
+
+                if (playsSound)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
+
                 IsOn?.Invoke(this);
                 break;
             case ApplianceState.ON:
                 state = ApplianceState.OFF;
+
+                if (playsSound)
+                {
+                    GetComponent<AudioSource>().Stop();
+                }
                 IsOff?.Invoke(this);
                 break;
 
             case ApplianceState.NO_POWER:
+                if (playsSound)
+                {
+                    GetComponent<AudioSource>().Stop();
+                }
                 IsOff?.Invoke(this);
                 break;
         }

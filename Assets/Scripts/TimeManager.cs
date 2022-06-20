@@ -14,6 +14,7 @@ public class TimeManager : MonoBehaviour
     public GameObject SliderTime;
     public Button nextStepButton;
     public Image clock;
+
     public Image spinningHourglass;
     public GameObject blackScreen;
     public GameObject stormCube;
@@ -100,7 +101,7 @@ public class TimeManager : MonoBehaviour
         //Rotate the clock
         clock.transform.eulerAngles = new Vector3(0, 0, rm.currentRotation.x - 40);
 
-        spinningHourglass.transform.eulerAngles = new Vector3(0, 0, (rm.currentRotation.x * rm.actionPoints) - 39);
+        //spinningHourglass.transform.eulerAngles = new Vector3(0, 0, (rm.currentRotation.x * rm.actionPoints) - 39);
 
 
         float percentageDay = rm.currentTime / 1440;
