@@ -89,7 +89,7 @@ public class TimeManager : MonoBehaviour
             rm.currentActionPoints = rm.actionPoints;
 
             currentDay++;
-            rm.scrap++;
+            rm.scrap += 3;
             rm.NextDayTransition();
         }
 

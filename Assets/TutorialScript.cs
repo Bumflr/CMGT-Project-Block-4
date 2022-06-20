@@ -7,6 +7,7 @@ public class TutorialScript : MonoBehaviour
     EntireGameManager engm;
 
     public GameObject tooterool;
+    public GameObject Plane;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +16,12 @@ public class TutorialScript : MonoBehaviour
         if (engm.skipTutorial)
         {
             tooterool.SetActive(false);
+            Plane.SetActive(false);
         }
         else
         {
             tooterool.SetActive(true);
+            Plane.SetActive(true);
         }
     }
 
