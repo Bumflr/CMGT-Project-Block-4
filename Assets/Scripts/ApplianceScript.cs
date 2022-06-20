@@ -36,6 +36,8 @@ public class ApplianceScript : MonoBehaviour
     public bool playsSound;
 
     public ResourceManager rm;
+    public GameObject Particle1;
+    public GameObject Particle2;
     //wind objects
     /*public GameObject Object1;
     public GameObject Object2;
@@ -117,6 +119,9 @@ public class ApplianceScript : MonoBehaviour
         {
             case ApplianceState.OFF:
                 state = ApplianceState.ON;
+                Particle1.SetActive(true);
+                Particle2.SetActive(true);
+
 
                 if (playsSound)
                 {
@@ -127,6 +132,8 @@ public class ApplianceScript : MonoBehaviour
                 break;
             case ApplianceState.ON:
                 state = ApplianceState.OFF;
+                Particle1.SetActive(false);
+                Particle2.SetActive(false);
 
                 if (playsSound)
                 {
