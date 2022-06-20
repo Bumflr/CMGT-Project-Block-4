@@ -67,13 +67,15 @@ public class ResourceManager : MonoBehaviour
 
         if (currentStorm <= 0)
         {
-            RenderSettings.fogDensity = 0.03f;
-            stormCube.SetActive(true);
-
             failScreenText.text = "The storm has hit...";
 
             failscreen.SetActive(true);
+        }
 
+        if (currentStorm <= 5)
+        {
+            RenderSettings.fogDensity = 0.03f;
+            stormCube.SetActive(true);
         }
 
         if (electricity <= 0 || hunger <= 0 || cleanliness <= 0 || boredom <= 0)
@@ -137,7 +139,7 @@ public class ResourceManager : MonoBehaviour
 
         currentActionPoints--;
 
-        newStorm = gm.em.motorOn ? currentStorm - 1 : currentStorm - 2;
+        newStorm = gm.em.motorOn ? currentStorm + 1 : currentStorm - 1;
 
     }
 
