@@ -9,7 +9,7 @@ public class SettignsMenuScript : MonoBehaviour
 
     public GameObject slider;
     public GameObject bool1;
-    public GameObject bool2;
+   // public GameObject bool2;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +20,7 @@ public class SettignsMenuScript : MonoBehaviour
 
         bool1.GetComponent<Toggle>().onValueChanged.AddListener(delegate { engm.SetTooterool(bool1.GetComponent<Toggle>().isOn); });
 
-        bool2.GetComponent<Toggle>().onValueChanged.AddListener(delegate { engm.SetVolume(bool2.GetComponent<Toggle>().isOn); });
+       // bool2.GetComponent<Toggle>().onValueChanged.AddListener(delegate { engm.SetVolume(bool2.GetComponent<Toggle>().isOn); });
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

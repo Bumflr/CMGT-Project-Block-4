@@ -9,7 +9,7 @@ public class EntireGameManager : MonoBehaviour
 
     public bool skipTutorial;
     public float volume;
-    public bool enableVFX;
+    //public bool enableVFX;
 
     public GameObject settingsMenu;
     // Start is called before the first frame update
@@ -43,10 +43,11 @@ public class EntireGameManager : MonoBehaviour
     {
         skipTutorial = value;
     }
-    public void SetVolume(bool value)
+
+   /* public void SetVolume(bool value)
     {
         enableVFX = value;
-    }
+    }*/
 
     public void Settings()
     {
