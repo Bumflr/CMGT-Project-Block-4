@@ -17,7 +17,6 @@ public class PauseController : MonoBehaviour
 
     public static void Pausing()
     {
-
         Debug.Log(MenuManager.currentlyOn);
 
         GameState currentGameState = GameStateManager.Instance.CurrentGameState;
