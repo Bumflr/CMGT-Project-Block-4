@@ -74,7 +74,6 @@ public class ResourceManager : MonoBehaviour
 
         if (currentStorm <= 5)
         {
-            RenderSettings.fogDensity = 0.03f;
             stormCube.SetActive(true);
         }
 
