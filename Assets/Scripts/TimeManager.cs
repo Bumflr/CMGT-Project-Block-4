@@ -111,6 +111,16 @@ public class TimeManager : MonoBehaviour
         gm.am.SetSliderValues((gm.tm.percentageNextStep / 5));
 
         float percentageSlider = 1 - (rm.currentStorm / rm.maxStorm);
+
+        if (percentageSlider > 1)
+        {
+            percentageSlider = 1;
+        }
+        if (percentageSlider < 0)
+        {
+            percentageSlider = 0;
+        }
+
         float sugma = -100 + percentageSlider * 100 * 2;
 
         SliderTime.gameObject.transform.localPosition = new Vector3(sugma, SliderTime.gameObject.transform.localPosition.y, SliderTime.gameObject.transform.localPosition.z);
