@@ -12,6 +12,8 @@ public class NewPlayerMovement : MonoBehaviour
     void Start()
     {
         myAgent = GetComponent <NavMeshAgent>();
+        myAgent.updateUpAxis = false;
+        //myAgent.updateRotation = false;
     }
 
     void Update()
