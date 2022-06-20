@@ -45,6 +45,7 @@ public class ApplianceManager : MonoBehaviour
             appliances[i].IsOn += gm.em.AddEnergy;
             appliances[i].IsOff += gm.em.RemoveEnergy;
 
+            savedApplianceSlider[i] = applianceSlider[i].value;
             appliances[i].Begin();
         }
 
@@ -90,20 +91,23 @@ public class ApplianceManager : MonoBehaviour
                 appliances[i].health = (applianceSlider[i].value * 100);
             }
 
-            if (appliances[i].state == ApplianceState.OFF)
+            /*if (appliances[i].state == ApplianceState.OFF)
             {
-                /*if (gm.tm.percentageNextStep > 0.9999f)
+                if (gm.tm.percentageNextStep > 0.9999f)
                 {
                     savedApplianceSlider[i] = applianceSlider[i].value;
                 }
                 else
                 {
-                    applianceSlider[i].value = savedApplianceSlider[i] - value;
-                }*/
+                    applianceSlider[i].value = savedApplianceSlider[i] + value;
+                }
 
-                applianceSlider[i].value = appliances[i].health / 100;
-            }
+            }*/
         }
+    }
+    public void ResetSlider(int index)
+    {
+        applianceSlider[index].value = appliances[index].health / 100;
     }
 
     public void SetSymbol(ApplianceState state, int index)

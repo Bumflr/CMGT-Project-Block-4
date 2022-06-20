@@ -149,11 +149,14 @@ public class ApplianceScript : MonoBehaviour
             state = ApplianceState.OFF;
             IsOff?.Invoke(this);
 
+            applianceManager.ResetSlider(index);
+
             SetSymbol();
         }
     }
 
     public void SetSymbol() { applianceManager.SetSymbol(state, index); }
+
 
     //Ok sometimes this gameobject spawns earlier than the Instance so put it in a while loop until it finds the instance
     IEnumerator SearchForInstance(object desiredScript)

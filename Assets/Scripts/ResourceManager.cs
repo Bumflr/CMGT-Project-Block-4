@@ -40,7 +40,7 @@ public class ResourceManager : MonoBehaviour
     {
         InitializeValues();
 
-        electricity = 100;
+        electricity = 20;
         hunger = 100;
         cleanliness = 100;
         boredom = 100;

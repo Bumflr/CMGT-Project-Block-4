@@ -386,7 +386,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applianceManager: {fileID: 0}
   index: 0
-  kwH: []
+  kwH:
+  - 8
+  - 6
+  - 4
   gains: 10
   use: 0
   health: 100
@@ -3073,6 +3076,10 @@ PrefabInstance:
     - target: {fileID: 3327219185392015094, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
       propertyPath: kwH.Array.data[2]
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112030149412369481, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
@@ -7285,7 +7292,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applianceManager: {fileID: 0}
   index: 0
-  kwH: []
+  kwH:
+  - 10
+  - 8
+  - 6
   gains: 0
   use: 0
   health: 100
@@ -8508,6 +8518,30 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fe70c8d8bd653c74ea36949df49739af, type: 3}
   m_PrefabInstance: {fileID: 1785856693}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1423605887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423605886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c114bb55abe284799c41eed6936b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applianceManager: {fileID: 0}
+  index: 0
+  kwH:
+  - 6
+  - 4
+  - 3
+  gains: 0
+  use: 0
+  health: 100
+  level: 0
+  rm: {fileID: 0}
+  state: 0
 --- !u!65 &1423605890
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12296,7 +12330,7 @@ MonoBehaviour:
   failscreen: {fileID: 974484308}
   failScreenText: {fileID: 1340535172}
   statDepletionRate: 10
-  electricity: 100
+  electricity: 20
   hunger: 100
   cleanliness: 100
   boredom: 100
@@ -12336,6 +12370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpPrefab: {fileID: 816037376}
+  gm: {fileID: 2033186416}
   upgrade: {fileID: 2033186421}
 --- !u!114 &2033186421
 MonoBehaviour:
@@ -12529,7 +12564,7 @@ MonoBehaviour:
   kwH:
   - 10
   - 56
-  - 578
+  - 4
   gains: 4
   use: 2
   health: 100
@@ -13000,6 +13035,9 @@ GameObject:
   - component: {fileID: 5600766286513542697}
   - component: {fileID: 6364255362454549508}
   - component: {fileID: 2209595281128418709}
+  - component: {fileID: 991946873190256535}
+  - component: {fileID: 991946873190256534}
+  - component: {fileID: 991946873190256533}
   m_Layer: 0
   m_Name: Cube.001
   m_TagString: Untagged
@@ -13007,6 +13045,57 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &991946873190256533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991946873190256532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a044e6e6715aa4f4cb7320c2d84dccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 0}
+  flipIfModelFucked: 0
+--- !u!65 &991946873190256534
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991946873190256532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04370033, y: 0.049472872, z: 0.04713256}
+  m_Center: {x: 0.0007234076, y: -0.0028446722, z: 0.028963882}
+--- !u!114 &991946873190256535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991946873190256532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c114bb55abe284799c41eed6936b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applianceManager: {fileID: 0}
+  index: 0
+  kwH:
+  - 6
+  - 4
+  - 2
+  gains: 0
+  use: 0
+  health: 100
+  level: 0
+  rm: {fileID: 0}
+  state: 0
 --- !u!1001 &2105060759416707027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13120,6 +13209,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2588409337663564610, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
+      propertyPath: kwH.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588409337663564610, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
+      propertyPath: kwH.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2621475315414898377, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -13387,6 +13484,10 @@ PrefabInstance:
     - target: {fileID: 3327219185392015094, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
       propertyPath: kwH.Array.data[2]
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112030149412369481, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}

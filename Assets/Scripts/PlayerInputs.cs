@@ -9,6 +9,7 @@ public class PlayerInputs : MonoBehaviour
     public RectTransform popUpPrefab;
     private bool interactedWith = false;
 
+    public GameManager gm;
     public UpgradeManager upgrade;
 
     void Update()
@@ -77,7 +78,7 @@ public class PlayerInputs : MonoBehaviour
                             hit.transform.GetComponent<ApplianceScript>().FixAppliance();
                         }
                     }
-                    else if (hit.transform.GetComponent<ApplianceScript>().state != ApplianceState.NO_POWER)
+                    else if (hit.transform.GetComponent<ApplianceScript>().state != ApplianceState.NO_POWER && gm.tm.percentageNextStep > 0.9999f)
                     {
                         hit.transform.GetComponent<ApplianceScript>().RotateState();
                     }
