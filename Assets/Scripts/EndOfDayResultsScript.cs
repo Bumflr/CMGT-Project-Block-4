@@ -22,7 +22,7 @@ public class EndOfDayResultsScript : MonoBehaviour
         scrap2.text = s.ToString("F0");
         days.text = d.ToString("F0") + " Days remain!";
 
-        float e2 = -e * 1.85f;
+        float e2 = -e * 0.71f;
         money2.text = "€ " + e2.ToString("F2") + " spent!";
     }
 
