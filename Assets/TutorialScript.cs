@@ -8,6 +8,7 @@ public class TutorialScript : MonoBehaviour
 
     public GameObject tooterool;
     public GameObject Plane;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class TutorialScript : MonoBehaviour
         {
             tooterool.SetActive(false);
             Plane.SetActive(false);
+            player.SetActive(true); 
         }
         else
         {

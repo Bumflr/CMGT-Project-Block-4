@@ -25863,6 +25863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooterool: {fileID: 8472506262648136154}
   Plane: {fileID: 603892919}
+  player: {fileID: 1303760814}
 --- !u!223 &8472506261268215676
 Canvas:
   m_ObjectHideFlags: 0
