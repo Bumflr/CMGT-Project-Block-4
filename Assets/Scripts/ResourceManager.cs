@@ -151,7 +151,7 @@ public class ResourceManager : MonoBehaviour
         float s = scrap - oldScrap;
         float d = currentStorm / actionPoints;
 
-        gm.eodr.GetData(e, h, b, c, s, d, gm.tm.currentDay - 1);
+        gm.eodr.GetData(e, h, b, c, s, d, gm.tm.currentDay - 1, e);
 
         oldElectricity = electricity;
         oldHunger = hunger;
