@@ -7,7 +7,7 @@ public class HoverOutline : MonoBehaviour
     [SerializeField] private Material outlineMaterial;
     private Renderer outlineRenderer;
 
-    public bool flipIfModelFucked;
+    public bool flipIfModelProblem;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class HoverOutline : MonoBehaviour
         outlineObject.transform.localScale = new Vector3(1, 1, 1);
         outlineObject.transform.localPosition = Vector3.zero;
 
-        if (flipIfModelFucked)
+        if (flipIfModelProblem)
         {
             outlineObject.transform.localRotation = new Quaternion(0, -180f, 0, 0);
         }
