@@ -13,6 +13,7 @@ public class ResourceManager : MonoBehaviour
     public Text scrapText;
 
     public GameObject failscreen;
+    public GameObject explosions;
     public Text failScreenText;
 
     public float statDepletionRate;
@@ -70,6 +71,8 @@ public class ResourceManager : MonoBehaviour
             failScreenText.text = "The storm has hit...";
 
             failscreen.SetActive(true);
+            explosions.SetActive(true);
+            
         }
 
         if (currentStorm <= 5)
@@ -82,6 +85,7 @@ public class ResourceManager : MonoBehaviour
             if (electricity <= 0)
             {
                 failScreenText.text = "Ran out of electricity!";
+                explosions.SetActive(true);
             }
             else if (hunger <= 0)
             {

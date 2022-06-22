@@ -670,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 1
 --- !u!65 &76315051
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -803,6 +803,10 @@ PrefabInstance:
     - target: {fileID: 2588409337663564610, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
       propertyPath: kwH.Array.data[2]
       value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588409337663564620, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
+      propertyPath: flipIfModelProblem
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2621475315414898377, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
       propertyPath: m_RootOrder
@@ -1010,7 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
+  flipIfModelProblem: 0
 --- !u!65 &101588609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1246,7 +1250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
+  flipIfModelProblem: 0
 --- !u!114 &111437584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1399,6 +1403,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8916540292238579605, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
       propertyPath: flipIfModelFucked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916540292238579605, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
+      propertyPath: flipIfModelProblem
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8950714431411383093, guid: 84557d5c0287b9b4191b4e6927d023d7, type: 3}
@@ -4180,7 +4188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 1
 --- !u!114 &401248063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8839,7 +8847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
+  flipIfModelProblem: 0
 --- !u!114 &792571003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9066,7 +9074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 0
 --- !u!65 &811446402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11972,7 +11980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 0
 --- !u!114 &1059207314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12559,7 +12567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 1
 --- !u!114 &1127966328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16195,7 +16203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 0
 --- !u!1 &1428919308
 GameObject:
   m_ObjectHideFlags: 0
@@ -16604,7 +16612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 1
 --- !u!65 &1450044658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17860,7 +17868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 1
 --- !u!114 &1541208899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18073,7 +18081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
+  flipIfModelProblem: 0
 --- !u!114 &1544277356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19257,7 +19265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
+  flipIfModelProblem: 0
 --- !u!1 &1682399750
 GameObject:
   m_ObjectHideFlags: 0
@@ -20230,7 +20238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
+  flipIfModelProblem: 0
 --- !u!1 &1764118087
 GameObject:
   m_ObjectHideFlags: 0
@@ -22093,7 +22101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 0
+  flipIfModelProblem: 0
 --- !u!1 &1907635651
 GameObject:
   m_ObjectHideFlags: 0
@@ -23552,7 +23560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 1
 --- !u!114 &2002480290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23691,6 +23699,7 @@ MonoBehaviour:
   electricityText: {fileID: 382459130}
   scrapText: {fileID: 634789620}
   failscreen: {fileID: 974484308}
+  explosions: {fileID: 2044900591}
   failScreenText: {fileID: 1340535172}
   statDepletionRate: 10
   electricity: 20
@@ -24400,7 +24409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f8ede30a4c0685543a4f50aac14eedc8, type: 2}
-  flipIfModelFucked: 1
+  flipIfModelProblem: 1
 --- !u!4 &2071776460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a22bd9ce99f173e48988487f555de058, type: 3}
@@ -25586,6 +25595,10 @@ PrefabInstance:
       propertyPath: kwH.Array.data[2]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2588409337663564620, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
+      propertyPath: flipIfModelProblem
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2621475315414898377, guid: 52979a49c0628974e87113c56e3d7995, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -25860,6 +25873,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7112030149412369481, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112030149412369481, guid: 5eec08bf25d0c8e4c9cde36292428219, type: 3}
+      propertyPath: flipIfModelProblem
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
